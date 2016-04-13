@@ -1,4 +1,4 @@
-package me.shizh.ai.tangmonk.user;
+package me.shizh.ai.zen.user;
 
 import java.util.List;
 

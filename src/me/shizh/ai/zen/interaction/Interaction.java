@@ -1,4 +1,4 @@
-package me.shizh.ai.tangmonk.interaction;
+package me.shizh.ai.zen.interaction;
 
 import java.util.List;
 

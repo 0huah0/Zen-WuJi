@@ -1,4 +1,4 @@
-package me.shizh.ai.tangmonk.interaction;
+package me.shizh.ai.zen.interaction;
 
 public class Active {
 	private int try_times = 3;

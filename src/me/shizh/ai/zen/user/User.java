@@ -1,8 +1,8 @@
-package me.shizh.ai.tangmonk.user;
+package me.shizh.ai.zen.user;
 
 import java.util.Map;
 
-import me.shizh.ai.tangmonk.interaction.Interaction;
+import me.shizh.ai.zen.interaction.Interaction;
 
 public class User {
 	private String uid;

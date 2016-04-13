@@ -1,11 +1,11 @@
-package me.shizh.ai.tangmonk;
+package me.shizh.ai.zen;
 
 import java.util.Map;
 import java.util.Scanner;
 
-import me.shizh.ai.tangmonk.descion.Categories;
-import me.shizh.ai.tangmonk.interaction.Response;
-import me.shizh.ai.tangmonk.user.User;
+import me.shizh.ai.zen.descion.Categories;
+import me.shizh.ai.zen.interaction.Response;
+import me.shizh.ai.zen.user.User;
 
 public class TangMonk {
 
