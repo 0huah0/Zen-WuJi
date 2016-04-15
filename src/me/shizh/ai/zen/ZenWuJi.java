@@ -36,8 +36,8 @@ public class ZenWuJi {
 		
 		boolean quit = false;
 		while (!quit) {
+			System.out.print(USER.getUid()+":");
 			String input = scnner.nextLine();
-			System.out.println(USER.getUid()+":" + input);
 			System.out.println("Zen:"+ Response.text_answer(Response.InputType.TEXT, input));
 			if ("quit".equals(input)) {
 				quit = true;

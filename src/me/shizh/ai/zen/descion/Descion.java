@@ -19,6 +19,7 @@ public class Descion {
 			List<Category> cs = ZenWuJi.CATEGORIES.get(cate);
 			outputs.addAll(matchDescionInCs(cs, input));
 		}
+		
 		return choiceOne(outputs); // choice one
 	}
 
@@ -43,7 +44,7 @@ public class Descion {
 		List<String> outputs = new ArrayList<String>();
 		for (Category c : cs) {
 			try{
-				if (input.matches(c.getInput_regular())) {// 按正则匹配
+				if (input.matches(c.get_regular())) {// 按正则匹配
 					outputs.add(match(c, input));
 				}
 			}catch(PatternSyntaxException e){
@@ -56,18 +57,18 @@ public class Descion {
 	private static String match(Category c, String input) {
 		String output = null;
 
-		if (StringUtil.isNotNull(c.getOutput_md())) { // 使用MD
-			output = ClassUtil.md_invoke(c.getOutput_md(), "doMachineDecision",
+		if (StringUtil.isNotNull(c.getMd_())) { // 使用MD
+			output = ClassUtil.md_invoke(c.getMd_(), "doMachineDecision",
 					input);
 		} else {
-			if (StringUtil.isNotNull(c.getOutput_random())) {// 使用随机
-				output = c.getOutput_random().get(
-						RandomUtil.random(0, c.getOutput_random().size()));
+			if (StringUtil.isNotNull(c.getRandom_())) {// 使用随机
+				output = c.getRandom_().get(
+						RandomUtil.random(0, c.getRandom_().size()));
 			}
 		}
 
 		if (StringUtil.isNull(output)) { // 使用default
-			output = c.getOutput_default();
+			output = c.getDefault_();
 		}
 
 		return output;
@@ -82,12 +83,11 @@ public class Descion {
 	 */
 	private static List<String> extractCategories(String input) {
 		List<String> ls = new ArrayList<String>();
+		ls.add("default");
 		
 		//TODO 分类到CATEGORIES的类型中
 		ls.add("complain");
-		if(ls.size()==0){
-			ls.add("default");
-		}
 		return ls;
 	}
+	
 }

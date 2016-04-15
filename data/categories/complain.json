@@ -1,76 +1,76 @@
 [
 	{
-		"input_regular": ".*[烦|不爽|讨厌|抓狂|FUCK|SHITE|气死我|糟糕|].*",
-		"output_default": "",
-		"output_random": [
+		"_regular": ".*[烦|不爽|讨厌|抓狂|FUCK|SHITE|气死我|糟糕|].*",
+		"default_": "",
+		"random_": [
 			"不要着急，慢慢说，我好帮你分析！",
 			"消消气，事情总会变好的，有什么我可以帮你的吗？"
 		],
-		"output_md": ""
+		"md_": ""
 	},{
-		"input_regular": ".*好麻烦.*",
-		"output_default": "",
-		"output_random": [
+		"_regular": ".*好麻烦.*",
+		"default_": "",
+		"random_": [
 			"你要让自己平静下来就不会有这种感觉了",
 			"习惯了就不觉得麻烦了。",
 			"生活本来就是这样。",
 			"我会默默的望着你。",
 			"要不要放首歌给你听？"
 		],
-		"output_md": ""
+		"md_": ""
 	},{
-		"input_regular": ".*把我忘.*",
-		"output_default": "怎会呢，就算是一条底裤，一张厕纸，都有它的用处。"
+		"_regular": ".*把我忘.*",
+		"default_": "怎会呢，就算是一条底裤，一张厕纸，都有它的用处。"
 	},{
-		"input_regular": ".*感情.*",
-		"output_default": "一个感情很复杂的人如果只爱你一个人的话，就会变得感情有缺陷，一个感情有缺陷的人，你就算永远地拥有他，也是没用的。"
+		"_regular": ".*感情.*",
+		"default_": "一个感情很复杂的人如果只爱你一个人的话，就会变得感情有缺陷，一个感情有缺陷的人，你就算永远地拥有他，也是没用的。"
 	},{
-		"input_regular": ".*命运.*公平.*",
-		"output_default": "是哦,我这么美，却没人追我。"
+		"_regular": ".*命运.*公平.*",
+		"default_": "是哦,我这么美，却没人追我。"
 	},{
-		"input_regular": ".*失望.*",
-		"output_default": "是呀，听到声音，还以为是一个很有感性，很有电影幻想的人。看这一身造型，就知道太没有内涵了。"
+		"_regular": ".*失望.*",
+		"default_": "是呀，听到声音，还以为是一个很有感性，很有电影幻想的人。看这一身造型，就知道太没有内涵了。"
 	},{
-		"input_regular": ".*良心.*",
-		"output_default": "人要对得起自己的良心"
+		"_regular": ".*良心.*",
+		"default_": "人要对得起自己的良心"
 	},{
-		"input_regular": ".*失眠.*",
-		"output_default": "不要失眠嘛，会连累我嘛！"
+		"_regular": ".*失眠.*",
+		"default_": "不要失眠嘛，会连累我嘛！"
 	},{
-		"input_regular": ".*天.*冷.*",
-		"output_default": "要注意身体呀，毛主席告诉我们身体是革命的本钱！"
+		"_regular": ".*天.*冷.*",
+		"default_": "要注意身体呀，毛主席告诉我们身体是革命的本钱！"
 	},{
-		"input_regular": ".*我.{0,2}生气.*",
-		"output_default": "不要生气，生气会犯了嗔戒的！"
+		"_regular": ".*我.{0,2}生气.*",
+		"default_": "不要生气，生气会犯了嗔戒的！"
 	},{
-		"input_regular": ".*受不了.*",
-		"output_default": "你要顶住呀"
+		"_regular": ".*受不了.*",
+		"default_": "你要顶住呀"
 	},{
-		"input_regular": ".*叽叽歪歪.*",
-		"output_default": "就好象整天有一只苍蝇，嗡，对不起，不是一只，是一堆苍蝇围着你，嗡、嗡、嗡、嗡，飞到你的耳朵里面"
+		"_regular": ".*叽叽歪歪.*",
+		"default_": "就好象整天有一只苍蝇，嗡，对不起，不是一只，是一堆苍蝇围着你，嗡、嗡、嗡、嗡，飞到你的耳朵里面"
 	},{
-		"input_regular": ".*想哭.*",
-		"output_default": "不要哭呀！！！我会心疼的！！！"
+		"_regular": ".*想哭.*",
+		"default_": "不要哭呀！！！我会心疼的！！！"
 	},{
-		"input_regular": ".*怎么.*不相信我.*",
-		"output_default": "呵，信你的话，我不全世界的人都要相信了呀。"
+		"_regular": ".*怎么.*不相信我.*",
+		"default_": "呵，信你的话，我不全世界的人都要相信了呀。"
 	},{
-		"input_regular": ".*生.*我.*气.*",
-		"output_default": "怎么会呀。"
+		"_regular": ".*生.*我.*气.*",
+		"default_": "怎么会呀。"
 	},{
-		"input_regular": ".*怪[你|我|他|她|它].*",
-		"output_default": "怪也没用啊。"
+		"_regular": ".*怪[你|我|他|她|它].*",
+		"default_": "怪也没用啊。"
 	},{
-		"input_regular": ".*怪.*",
-		"output_default": "见多不怪呀，还好啦"
+		"_regular": ".*怪.*",
+		"default_": "见多不怪呀，还好啦"
 	},{
-		"input_regular": ".*想自杀.*",
-		"output_default": "不要啊，那样不好。"
+		"_regular": ".*想自杀.*",
+		"default_": "不要啊，那样不好。"
 	},{
-		"input_regular": ".*怎么.*不相信我.*",
-		"output_default": "呵，信你的话，我不全世界的人都要相信了呀。"
+		"_regular": ".*怎么.*不相信我.*",
+		"default_": "呵，信你的话，我不全世界的人都要相信了呀。"
 	},{
-		"input_regular": ".*郁闷.*",
-		"output_default": "为什么呢？"
+		"_regular": ".*郁闷.*",
+		"default_": "为什么呢？"
 	}
 ]

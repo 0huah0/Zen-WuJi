@@ -19,42 +19,42 @@ public class Category {
 	
 	private final static String category = PathUtil.getResourcesPath()+"data/categories/"; 
 	
-	private String input_regular;
+	private String _regular;
 
-	private String output_default;
-	private List<String> output_random;
-	private String output_md; // machine_decision
+	private String default_;
+	private List<String> random_;
+	private String md_; // machine_decision
 
-	public String getInput_regular() {
-		return input_regular;
+	public String get_regular() {
+		return _regular;
 	}
 
-	public void setInput_regular(String input_regular) {
-		this.input_regular = input_regular;
+	public void set_regular(String _regular) {
+		this._regular = _regular;
 	}
 
-	public String getOutput_default() {
-		return output_default;
+	public String getDefault_() {
+		return default_;
 	}
 
-	public void setOutput_default(String output_default) {
-		this.output_default = output_default;
+	public void setDefault_(String default_) {
+		this.default_ = default_;
 	}
 
-	public List<String> getOutput_random() {
-		return output_random;
+	public List<String> getRandom_() {
+		return random_;
 	}
 
-	public void setOutput_random(List<String> output_random) {
-		this.output_random = output_random;
+	public void setRandom_(List<String> random_) {
+		this.random_ = random_;
 	}
 
-	public String getOutput_md() {
-		return output_md;
+	public String getMd_() {
+		return md_;
 	}
 
-	public void setOutput_md(String output_md) {
-		this.output_md = output_md;
+	public void setMd_(String md_) {
+		this.md_ = md_;
 	}
 
 	@SuppressWarnings("unchecked")
