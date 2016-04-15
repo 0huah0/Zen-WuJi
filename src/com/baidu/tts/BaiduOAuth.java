@@ -1,4 +1,4 @@
-package com.baidu.tts.sample;
+package com.baidu.tts;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,7 +9,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.json.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 public class BaiduOAuth {
 	public static String getToken(String client_id, String client_secret) {
@@ -64,8 +65,9 @@ public class BaiduOAuth {
 		String respStr = getToken(client_id, client_secret);
 		//{"access_token":"24.e2059706aa491b187d42dc207dc395ad.2592000.1463130618.282335-7997390","session_key":"9mzdXveMyG4C1K6u2gtibmD5PFPzRtOjHKHPMmrtzXWFNHsu\/Ex9ULvtzdFMtFwg6PTdWGflNqH7W1PRLtQQTyE+RpOI","scope":"public audio_voice_assistant_get audio_tts_post wise_adapt lebo_resource_base lightservice_public hetu_basic lightcms_map_poi kaidian_kaidian","refresh_token":"25.dbb9965a6e69f2cecffef5c1d9a3acf3.315360000.1775898618.282335-7997390","session_secret":"6ca063dd5df89cf40fe7f407fbf8a85b","expires_in":2592000}
 		System.out.println(respStr);  
-		JSONObject jsonobject = new JSONObject(respStr);
-		String access_token = (String) jsonobject.get("access_token");
+		
+		JsonObject jo = new Gson().fromJson(respStr, JsonObject.class);
+		String access_token = jo.get("access_token").getAsString();
 		System.out.println(access_token);
 
 	}

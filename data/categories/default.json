@@ -1,0 +1,13 @@
+[
+	{
+		"input_regular": ".*",
+		"output_default": "系统无法识别。",
+		"output_random": [
+			"你的意思是？",
+			"啊...",
+			"什么？",
+			"没懂你什么意思。"
+		],
+		"output_md": ""
+	}
+]

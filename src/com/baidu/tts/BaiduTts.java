@@ -1,4 +1,4 @@
-package com.baidu.tts.sample;
+package com.baidu.tts;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -140,12 +140,19 @@ public class BaiduTts {
 		
 		baiduTtsApi(map,null);
 	}
-
+	
+	public static String voice2text(String input) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	public static void main(String[] args) {
 		
 		String text = "系统提示，联网失败。";
 		/*
-		 * spd 选填 语速，取值 0-9，默认为 5 pit 选填 音调，取值 0-9，默认为 5 vol 选填 音量，取值 0-9，默认为 5
+		 * spd 选填 语速，取值 0-9，默认为 5 
+		 * pit 选填 音调，取值 0-9，默认为 5 
+		 * vol 选填 音量，取值 0-9，默认为 5
 		 * per 选填 发音人选择，取值 0-1 ；0 为女声，1 为男声，默认为女声
 		 */
 		HashMap<String, String> map = new HashMap<String,String>();
@@ -159,9 +166,11 @@ public class BaiduTts {
 		
 		String savefile = createMp3Filename(text);
 		baiduTtsApi(map,savefile);
-
+		
 		System.out.println("done!");
 	}
 
+	
+	
 	
 }

@@ -4,7 +4,7 @@ Zen-WuJi:｛
 			sex:'female',
 			name:'Rain',			
 			age:21,
-			voice:'female1',	//声音
+			emotion:'',	//快乐、悲伤、恐惧、愤怒、焦虑、惊讶、尴尬、羞耻、内疚、鄙夷、厌恶、狂喜、绝望、暴怒、憎恶、欲望、悲哀、害羞、骄傲、自信、惊喜、犹豫、忧愁、忧郁、激动
 			u_type:{		// 机器人画像，学习改变
 				style:[['幽默',80%],['稳重',80%]],
 				interest:[['电影',90%]], // tags的前5
@@ -26,7 +26,6 @@ Zen-WuJi:｛
 		knowledge:{	// 自动学习完善
 			discuss:[{
 				input:{
-					pattern:'今天星期*'，			// *号模糊匹配
 					regular:'(\w)*星期(\w){0,1}'	// 正则表达式
 				},
 				output:{
@@ -51,11 +50,23 @@ Zen-WuJi:｛
 			job:{},
 			joke:{},
 			life:{},
+			default:{
+				input:{
+					regular:'*'	// 正则表达式
+				},
+				output:{
+					default:'没懂你什么意思。',
+					random:['你的意思是？','啊...','什么？'],
+					md:java.class			// machine_decision
+				}
+			}
 		},
 		users:[{
 			u_id:'session',	// 用户表示父
-			ext_attr:[{name:'jim'},{sex:'man'}],
-			u_type:{		// 用户画像
+			name:'Jim',			
+			age:40,
+			emotion:'快乐',	//从一个时间窗口中识别
+			u_type:{		//用户画像
 				style:[['幽默',80%],
 					['豪放',70%],
 					['强迫症',10%],
@@ -80,7 +91,12 @@ Zen-WuJi:｛
 				]},
 				uid2:{}
 			]
-		}]
+		}],
+		orm:{	//持久化
+			loadUser:function(name){},
+			saveOrUpdateUser:function(user){},
+			loadCates:function(){}
+		}
 	},
 	interaction:{	// 互动
 		resp_time_delay:{			// 回复时间间隔随机范围

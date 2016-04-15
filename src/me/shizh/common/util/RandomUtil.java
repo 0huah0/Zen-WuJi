@@ -32,5 +32,11 @@ public class RandomUtil {
 	public static Object random(Object object1, Object object2) {
 		return Math.random() > 0.5 ? object1 : object2;
 	}
+	
+	
+	public static String random_username() {
+		//TODO
+		return "RU"+random(0,10000);
+	}
 
 }
