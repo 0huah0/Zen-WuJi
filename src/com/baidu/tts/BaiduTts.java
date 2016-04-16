@@ -15,6 +15,7 @@ import java.util.Iterator;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 import me.shizh.common.util.PathUtil;
+import me.shizh.common.util.StringUtil;
 import me.shizh.common.util.UuidUtil;
 
 /**
@@ -38,7 +39,7 @@ public class BaiduTts {
 	}
 
 	private static void baiduTtsApi(HashMap<String, String> map,String saveFile) {
-		String httpUrl = "http://tsn.baidu.com/asd";
+		String httpUrl = "http://tsn.baidu.com/text2audio";
 		
 		URL url = null;
 
@@ -82,10 +83,10 @@ public class BaiduTts {
 				}
 			} else if (200 == rcode) {
 				InputStream in = conn.getInputStream();
-				if(saveFile!=null && saveFile.length()>0){
+				if(StringUtil.isNotNull(saveFile)){
 					fileSave(in,saveFile);	//保存MP3
 				}
-				playMp3(new FileInputStream(saveFile));	//播放
+				playMp3(in);	//播放
 			} else {
 				playMp3(new FileInputStream(PathUtil.getResourcesPath()+"resource/system/voice/系统提示，联网失败.mp3"));
 			}

@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import me.shizh.ai.zen.descion.Category;
+import me.shizh.ai.zen.features.voice.Voice;
 import me.shizh.ai.zen.interaction.Response;
 import me.shizh.ai.zen.user.User;
 
@@ -27,6 +28,14 @@ public class ZenWuJi {
 
 	public static void main(String[] args) {
 
+//		Pattern pattern = Pattern.compile(".*([昨|前|明|后])天.*冷\\S*");
+//        Matcher matcher = pattern.matcher("昨天好冷啊"); 
+//        if(matcher.find()) {
+//            System.out.println(matcher.group(1));
+//        }
+        
+//		System.exit(0);
+		
 		init();
 		
 		Scanner scnner = new Scanner(System.in);
@@ -38,7 +47,10 @@ public class ZenWuJi {
 		while (!quit) {
 			System.out.print(USER.getUid()+":");
 			String input = scnner.nextLine();
-			System.out.println("Zen:"+ Response.text_answer(Response.InputType.TEXT, input));
+			String output = Response.text_answer(Response.InputType.TEXT, input);
+			System.out.println("Zen:"+ output);
+			Voice.doVoice(output);
+			
 			if ("quit".equals(input)) {
 				quit = true;
 				saveAll();	//退出前持久化信息

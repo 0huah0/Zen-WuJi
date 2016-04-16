@@ -37,7 +37,7 @@ public class Voice {
 	}
 
 	private static String decideVol() {
-		int age = Integer.parseInt(ZenWuJi.USER.getAge());
+		int age = ZenWuJi.USER.getAge();
 		int vol = 5;
 		
 		//年龄影响
@@ -69,7 +69,7 @@ public class Voice {
 	}
 
 	private static String decidePit() {
-		int age = Integer.parseInt(ZenWuJi.USER.getAge());
+		int age = ZenWuJi.USER.getAge();
 		int vol = 5;
 		
 		//年龄影响
@@ -97,7 +97,7 @@ public class Voice {
 	}
 
 	private static String decideSpd() {
-		int age = Integer.parseInt(ZenWuJi.USER.getAge());
+		int age = ZenWuJi.USER.getAge();
 		int vol = 5;
 		
 		//年龄影响

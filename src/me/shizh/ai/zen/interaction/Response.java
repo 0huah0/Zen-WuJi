@@ -1,9 +1,9 @@
 package me.shizh.ai.zen.interaction;
 
-import com.baidu.tts.BaiduTts;
-
 import me.shizh.ai.zen.descion.Descion;
 import me.shizh.ai.zen.features.voice.Voice;
+
+import com.baidu.tts.BaiduTts;
 
 
 /**
@@ -36,6 +36,7 @@ public class Response {
 			ouput = _answeText(input);
 			break;
 		}
+		
 		return ouput;
 	}
 	

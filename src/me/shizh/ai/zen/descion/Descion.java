@@ -2,6 +2,8 @@ package me.shizh.ai.zen.descion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import me.shizh.ai.zen.ZenWuJi;
@@ -20,6 +22,9 @@ public class Descion {
 			outputs.addAll(matchDescionInCs(cs, input));
 		}
 		
+		if(outputs.size()==0){
+			outputs.addAll(matchDescionInCs(ZenWuJi.CATEGORIES.get("default"), input)); 
+		}
 		return choiceOne(outputs); // choice one
 	}
 
@@ -44,9 +49,17 @@ public class Descion {
 		List<String> outputs = new ArrayList<String>();
 		for (Category c : cs) {
 			try{
-				if (input.matches(c.get_regular())) {// 按正则匹配
-					outputs.add(match(c, input));
-				}
+				String output = null;
+				// 按正则匹配
+				Pattern pattern = Pattern.compile(c.get_regular());
+		        Matcher matcher = pattern.matcher(input); 
+		        if(matcher.find()) {
+		            output = match(c, input);
+		            for(int i=1;i<=matcher.groupCount();i++){
+		            	output = output.replace("{"+i+"}", matcher.group(i));
+		            }
+		            outputs.add(output);
+		        }
 			}catch(PatternSyntaxException e){
 				System.out.println(e.getMessage());
 			}
@@ -83,7 +96,6 @@ public class Descion {
 	 */
 	private static List<String> extractCategories(String input) {
 		List<String> ls = new ArrayList<String>();
-		ls.add("default");
 		
 		//TODO 分类到CATEGORIES的类型中
 		ls.add("complain");

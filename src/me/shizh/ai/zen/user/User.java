@@ -9,8 +9,8 @@ public class User {
 	private String uid;
 	private String name;// name
 	private String sex;
-	private String age;
-	private String emotion;//快乐、悲伤、恐惧、愤怒、焦虑、惊讶、尴尬、羞耻、内疚、鄙夷、厌恶、狂喜、绝望、暴怒、憎恶、欲望、悲哀、害羞、骄傲、自信、惊喜、犹豫、忧愁、忧郁、激动
+	private int age = 28;
+	private String emotion = "快乐";//快乐、悲伤、恐惧、愤怒、焦虑、惊讶、尴尬、羞耻、内疚、鄙夷、厌恶、狂喜、绝望、暴怒、憎恶、欲望、悲哀、害羞、骄傲、自信、惊喜、犹豫、忧愁、忧郁、激动
 	private UserType userType;
 	private Map<String, String>[] ext_attr; // 用户扩展属性
 	private Interaction interaction;
@@ -39,11 +39,14 @@ public class User {
 		this.sex = sex;
 	}
 
-	public String getAge() {
+	public int getAge() {
 		return age;
 	}
 
 	public void setAge(String age) {
+		this.age = Integer.parseInt(age);
+	}
+	public void setAge(int age) {
 		this.age = age;
 	}
 
