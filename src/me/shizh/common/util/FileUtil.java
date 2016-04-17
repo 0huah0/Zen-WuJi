@@ -1,11 +1,14 @@
 package me.shizh.common.util;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
@@ -69,7 +72,8 @@ public class FileUtil {
 	/**
 	 * 读取到字节数组0
 	 * 
-	 * @param filePath //路径
+	 * @param filePath
+	 *            //路径
 	 * @throws IOException
 	 */
 	@SuppressWarnings("resource")
@@ -192,7 +196,7 @@ public class FileUtil {
 			fc = rf.getChannel();
 			MappedByteBuffer byteBuffer = fc.map(MapMode.READ_ONLY, 0,
 					fc.size()).load();
-			//System.out.println(byteBuffer.isLoaded());
+			// System.out.println(byteBuffer.isLoaded());
 			byte[] result = new byte[(int) fc.size()];
 			if (byteBuffer.remaining() > 0) {
 				// System.out.println("remain");
@@ -210,6 +214,16 @@ public class FileUtil {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public static String inputStream2String(InputStream is) throws IOException {
+		BufferedReader in = new BufferedReader(new InputStreamReader(is));
+		StringBuffer buffer = new StringBuffer();
+		String line = "";
+		while ((line = in.readLine()) != null) {
+			buffer.append(line);
+		}
+		return buffer.toString();
 	}
 
 }

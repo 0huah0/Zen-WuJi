@@ -1,0 +1,3 @@
+1,通过在配json文件中为category的md设置一个可以访问到的java类，可以完成通过该类是逻辑答复input，要求是该类有个public String doMachineDecision(String input)方法。
+2,category支持正则表达式，并能在output中通过{n}引用正则表达式中mapping到的matcher.group(n);
+3，

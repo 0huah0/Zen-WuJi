@@ -13,6 +13,7 @@ import me.shizh.common.util.PathUtil;
 import me.shizh.common.util.StringUtil;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 public class Category {
@@ -75,7 +76,11 @@ public class Category {
 					//http://blog.csdn.net/luhuajcdd/article/details/7971271
 					Type type = new TypeToken<ArrayList<Category>>(){}.getType();
 					String key = jf.getName().substring(0, jf.getName().lastIndexOf("."));
-					categories.put(key, (List<Category>) gson.fromJson(str, type));
+					try{
+						categories.put(key, (List<Category>) gson.fromJson(str, type));
+					}catch(JsonSyntaxException e){
+						System.out.println(e.getMessage());
+					}
 				}
 			}
 		}
