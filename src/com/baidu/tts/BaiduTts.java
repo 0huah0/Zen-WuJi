@@ -20,22 +20,30 @@ import me.shizh.common.util.UuidUtil;
 
 /**
  * http://blog.csdn.net/iijse/article/details/6201101
- * 
+ * 引入一个线程解决发音重叠的问题
  * @author Administrator
  * 
  */
-public class BaiduTts {
+public class BaiduTts extends Thread {
 	private static String token = "24.e2059706aa491b187d42dc207dc395ad.2592000.1463130618.282335-7997390";
 	private static String client_id = "AzzpGs1zEnGDKj3pw6s1OO4j";
 	private static String client_secret = "9ba3602f82f3c1807b1b0ee9647fa925";
 	private static int failRetry = 3;
-
+	
+	private static Player play = null;
+	private static Thread t = null;
+	
 	private static void playMp3(InputStream in) {
+		if(t != null){
+			play.close();	//结束后线程会退出
+		}
+		t = new BaiduTts();	//开始新线程
 		try {
-			new Player(new BufferedInputStream(in)).play();
+			play = new Player(new BufferedInputStream(in));
 		} catch (JavaLayerException e) {
 			e.printStackTrace();
 		}
+		t.start();
 	}
 
 	private static void baiduTtsApi(HashMap<String, String> map,String saveFile) {
@@ -147,9 +155,21 @@ public class BaiduTts {
 		return null;
 	}
 	
+	
+
+	@Override
+	public void run() {
+		try {
+			play.play();
+		} catch (JavaLayerException e) {
+			System.out.println(e.getMessage());
+		}
+		t = null;
+	}
+
 	public static void main(String[] args) {
 		
-		String text = "系统提示，联网失败。";
+		String text = "电脑每次开机都要输入这个，要不然就一直是黑屏，没有桌面显示";
 		/*
 		 * spd 选填 语速，取值 0-9，默认为 5 
 		 * pit 选填 音调，取值 0-9，默认为 5 
@@ -166,7 +186,15 @@ public class BaiduTts {
 		map.put( "per", "1" );
 		
 		String savefile = createMp3Filename(text);
-		baiduTtsApi(map,savefile);
+		baiduTtsApi(map,null);
+//		baiduTtsApi(map,savefile);
+//		try {
+//			Thread.sleep(2000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		baiduTtsApi(map,null);
 		
 		System.out.println("done!");
 	}
