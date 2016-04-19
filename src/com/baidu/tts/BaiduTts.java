@@ -30,23 +30,36 @@ public class BaiduTts extends Thread {
 	private static String client_secret = "9ba3602f82f3c1807b1b0ee9647fa925";
 	private static int failRetry = 3;
 	
-	private static Player play = null;
+	private static Player player = null;
 	private static Thread t = null;
 	
-	private static void playMp3(InputStream in) {
+	//发音方式；顺序（一句一句来，用户需要等待），打断（终止上一句说下一句），重叠（前后两句一起，项两个人同时在说）
+	
+	private static void playMp3(int priority,InputStream in) {
+		
 		if(t != null){
-			play.close();	//结束后线程会退出
+			player.close();	//结束后线程会退出
 		}
-		t = new BaiduTts();	//开始新线程
+		
 		try {
-			play = new Player(new BufferedInputStream(in));
+			player = new Player(new BufferedInputStream(in));
 		} catch (JavaLayerException e) {
 			e.printStackTrace();
 		}
-		t.start();
+		
+		if(priority == 0){
+			t = new BaiduTts();	//开始新线程
+			t.start();
+		}else{
+			try {
+				player.play();
+			} catch (JavaLayerException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
-	private static void baiduTtsApi(HashMap<String, String> map,String saveFile) {
+	private static void baiduTtsApi(HashMap<String, String> map,int priority,String saveFile) {
 		String httpUrl = "http://tsn.baidu.com/text2audio";
 		
 		URL url = null;
@@ -85,7 +98,7 @@ public class BaiduTts extends Thread {
 				// retry
 				if (failRetry > 0) {
 					failRetry--;
-					baiduTtsApi(map,saveFile);
+					baiduTtsApi(map,priority,saveFile);
 				} else {
 					failRetry = 3;
 				}
@@ -94,9 +107,9 @@ public class BaiduTts extends Thread {
 				if(StringUtil.isNotNull(saveFile)){
 					fileSave(in,saveFile);	//保存MP3
 				}
-				playMp3(in);	//播放
+				playMp3(priority,in);	//播放
 			} else {
-				playMp3(new FileInputStream(PathUtil.getResourcesPath()+"resource/system/voice/系统提示，联网失败.mp3"));
+				playMp3(9,new FileInputStream(PathUtil.getResourcesPath()+"resource/system/voice/系统提示，联网失败.mp3"));
 			}
 
 			
@@ -107,6 +120,7 @@ public class BaiduTts extends Thread {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private static String createMp3Filename(String text) {
 		text = PathUtil.getResourcesPath()+"tmp/system/voice/"+UuidUtil.get32UUID()+".mp3";
 		System.out.println(text);
@@ -147,9 +161,28 @@ public class BaiduTts extends Thread {
 			map.put(key, params.get(key));
 		}
 		
-		baiduTtsApi(map,null);
+		baiduTtsApi(map,getVoicePlayPriority(text),null);
 	}
 	
+	/**
+	 * 确定播放优先级，==0可以被中断
+	 * 以下情况可以被中断：
+	 * 		1.如果正在播放的语句，是简单问答，比较长（如预计在10秒以上）；
+	 * 		2.或者，如果正在播放的语句不是非得听完的（如系统提示、说明、解释）
+	 * @param text 
+	 * @return
+	 */
+	private static int getVoicePlayPriority(String text) {
+		int priority = 0;
+		if(text.matches("^{系统提示|警告}.*")){
+			priority = 9;
+		}else{
+			
+		}
+		
+		return priority;
+	}
+
 	public static String voice2text(String input) {
 		// TODO Auto-generated method stub
 		return null;
@@ -160,7 +193,7 @@ public class BaiduTts extends Thread {
 	@Override
 	public void run() {
 		try {
-			play.play();
+			player.play();
 		} catch (JavaLayerException e) {
 			System.out.println(e.getMessage());
 		}
@@ -185,16 +218,16 @@ public class BaiduTts extends Thread {
 		map.put( "vol", "7" );
 		map.put( "per", "1" );
 		
-		String savefile = createMp3Filename(text);
-		baiduTtsApi(map,null);
+
+		baiduTtsApi(map,0,null);
+//		String savefile = createMp3Filename(text);
 //		baiduTtsApi(map,savefile);
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		baiduTtsApi(map,null);
+		/*try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}*/
+		
 		
 		System.out.println("done!");
 	}

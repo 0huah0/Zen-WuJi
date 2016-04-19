@@ -6,18 +6,18 @@
 			name:"Rain",			
 			age:21,
 			emotion:"",	//快乐、悲伤、恐惧、愤怒、焦虑、惊讶、尴尬、羞耻、内疚、鄙夷、厌恶、狂喜、绝望、暴怒、憎恶、欲望、悲哀、害羞、骄傲、自信、惊喜、犹豫、忧愁、忧郁、激动
-			u_type:{		// 机器人画像，学习改变
+			u_type:{	//机器人画像，学习改变
 				style:[["幽默",0.7],["稳重",0.8]],
-				interest:[["电影",0.75]], // tags的前5
-				tags:[["85后",0.9],["jay迷",0.7],["电影",36]]	// %\小数是概率，整数是出现次数
+				interest:[["电影",0.75]], //tags的前5
+				tags:[["85后",0.9],["jay迷",0.7],["电影",36]]	//%\小数是概率，整数是出现次数
 			}
 		},
-		"ACTION":{
+		action:{
 			move:"function(direction,speed,distence){}",
 			jump:"function(direction,height|middel|low,distence=50%){}",
 			smile:"function(time=3s,degree=40%){}"
 		},
-		"VOICE":{
+		voice:{
 			sing:"function([song name]){}",
 			speak:"function(str){}"
 		}
@@ -62,7 +62,7 @@
 			}
 		},
 		users:[{
-			u_id:"session",	// 用户表示父
+			u_id:"session",	// 用户标识符
 			name:"Jim",			
 			age:40,
 			emotion:"快乐",	//从一个时间窗口中识别
@@ -77,6 +77,11 @@
 					["自大",0.4]],	// 由历史回话分类其聊天风格
 				interest:[["85后",0.9]], // tags的前5
 				tags:[["85后",0.9],["jay迷",0.7],["电影",36]]	// %\小数是概率，整数是出现次数
+			},
+			setting:{	//机器人设置
+				sex:"female",
+				name:"Rain",			
+				age:21
 			},
 			history:[ 						// 用YYYYMMDDHHmmss时间戳做一次发言的
 				uid1:{[
@@ -98,7 +103,7 @@
 			loadCates:"function(){}"
 		}
 	},
-	inter"ACTION":{	// 互动
+	interaction:{	// 互动
 		resp_time_delay:{			// 回复时间间隔随机范围
 			default:[0.5,3],
 			md:"java.class"			// machine_decision 用java类决策，考虑对话上下文

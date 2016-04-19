@@ -8,7 +8,8 @@ import com.baidu.tts.BaiduTts;
 
 /**
  * 语言能力：语音转文字，文字转语音
- * 
+ * doVoice 负责“说话”，“说话”有三种方式：
+ * 	顺序（一句一句来，用户需要等待），打断（终止上一句说下一句），重叠（前后两句一起，项两个人同时在说）
  * @author Administrator
  * 
  */
@@ -32,7 +33,7 @@ public class Voice {
 		map.put("pit", decidePit());
 		map.put("vol", decideVol());
 		map.put("per", "女".equals(ZenWuJi.USER.getSex()) ? "0" : "1");
-
+		
 		BaiduTts.text2voice(input, map);
 	}
 

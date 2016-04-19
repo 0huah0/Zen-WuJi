@@ -21,7 +21,10 @@ import java.util.regex.Pattern;
  * 
  */
 public class StringUtil {
-
+	
+	public static String[] units = { "", "十", "百", "千", "万", "十万", "百万", "千万", "亿","十亿", "百亿", "千亿", "万亿" };
+	public static char[] numArray = { '零', '一', '二', '三', '四', '五', '六', '七', '八', '九' };
+	
 	/**
 	 * 将以逗号分隔的字符串转换成字符串数组
 	 * 
@@ -1201,6 +1204,67 @@ public class StringUtil {
 		for (int i = 0; i < t_str_arr2.length; i++) {
 			System.out.println(t_str_arr2[i]);
 		}
+	}
+
+	/**
+	 * 将二百一十八转化成218
+	 * 二千零四万 204
+	 * 三亿零六百零七万零九百零六=306070906
+	 * 
+	 * @param str
+	 * @return Long
+	 */
+	public static Long chineseToNum(String str) {
+		Map<String,Long> units = new HashMap<String,Long>();
+		units.put("亿", 100000000L);
+		units.put("万", 10000L);
+		units.put("千", 1000L);
+		units.put("百", 100L);
+		units.put("十", 10L);
+		
+		Map<String,Integer> nums = new HashMap<String,Integer>();
+		String[] numStrs = new String[]{ "零", "一", "二", "三", "四", "五", "六", "七", "八", "九" };
+		for(int i=0;i<numStrs.length;i++ ){
+			nums.put(numStrs[i], i);
+		}
+		
+//		str = "三千五十万四千三亿六百七万九百六";//30504003,06070906
+		str = "三千零五十万四千三百二十六亿零六百零七万一千九百零六";//30504003,06070906
+//		str = "三千零五十万四千零三亿零六百零七万零九百零六";//30504003,06070906
+		//((3*1000+5)*10000+4*1000+3)*y+(6*100+7)*10000+9*100+6
+		//3050400306070906
+		Long total = 0L;
+		Long num = 0L;
+		Integer tmp = 0;
+		Long lastUnit = null;
+		Long maxUnit = 0L;
+		char[] ss = str.toCharArray();
+		for(int i=0;i<ss.length;i++){
+			Long v = units.get(String.valueOf(ss[i]));
+			if(v == null){	//是数值
+				tmp = nums.get(String.valueOf(ss[i]));
+				if(i == ss.length-1){
+					total += num+tmp;
+				}
+			}else{			//是单位 
+				if(lastUnit!=null && lastUnit < v){	//比前一个单位大，如三百零五万，则乘
+					if(v > maxUnit){
+						maxUnit = v;
+						total = (total+num+tmp) * v ;
+					}else{
+						total += (num+tmp) * v ;
+					}
+					num = 0L;
+				}else{	//比前一个单位小，如一千三百，则乘加
+					num += tmp * v;
+					tmp = 0;
+				}
+				lastUnit = v;
+			}
+		}
+		
+		System.out.println(total);
+		return num;
 	}
 
 }

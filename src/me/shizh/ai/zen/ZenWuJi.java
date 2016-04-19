@@ -3,45 +3,39 @@ package me.shizh.ai.zen;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import me.shizh.ai.zen.descion.Category;
 import me.shizh.ai.zen.features.voice.Voice;
+import me.shizh.ai.zen.interaction.InteractionOutput;
 import me.shizh.ai.zen.interaction.Response;
 import me.shizh.ai.zen.user.User;
+import me.shizh.common.util.StringUtil;
 
 public class ZenWuJi {
 
 	public static Map<String, List<Category>> CATEGORIES;
 	public static User USER = null;
 	
-	private static void init() {
-		CATEGORIES = Category.loadCategories();
-		USER = User.initUserIns();
-	}
-	
 	private static void saveAll() {
 		System.out.println("[INFO]Saving All ...");
-		
 		Category.saveAll(CATEGORIES);
 		User.saveAll(USER);
 	}
 
 	public static void main(String[] args) {
-
-//		Pattern pattern = Pattern.compile(".*([昨|前|明|后])天.*冷\\S*");
-//        Matcher matcher = pattern.matcher("昨天好冷啊"); 
-//        if(matcher.find()) {
-//            System.out.println(matcher.group(1));
-//        }
-        
-//		System.exit(0);
-		
-		init();
+		//http://tool.oschina.net/regex/
+		StringUtil.chineseToNum("");
+		System.exit(0);
 		
 		Scanner scnner = new Scanner(System.in);
-		System.out.print("YOUR NAME IS :");
-		String name = scnner.nextLine();
-		USER.setUid(name);
+		InteractionOutput.output("tv","请输入你的用户名:");
+		USER = User.initUserIns(scnner);
+		InteractionOutput.output("vt","正在启动,请稍等...");
+		CATEGORIES = Category.loadCategories();
+		
+		InteractionOutput.output("tv","你好！系统已启动，欢迎使用。");
 		
 		boolean quit = false;
 		while (!quit) {

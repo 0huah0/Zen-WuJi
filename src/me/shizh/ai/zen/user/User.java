@@ -1,18 +1,24 @@
 package me.shizh.ai.zen.user;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import me.shizh.ai.zen.interaction.Interaction;
-import me.shizh.common.util.RandomUtil;
+import me.shizh.ai.zen.interaction.InteractionOutput;
+import me.shizh.common.util.StringUtil;
+import me.shizh.common.util.UuidUtil;
 
 public class User {
 	private String uid;
 	private String name;// name
 	private String sex;
 	private int age = 28;
-	private String emotion = "快乐";//快乐、悲伤、恐惧、愤怒、焦虑、惊讶、尴尬、羞耻、内疚、鄙夷、厌恶、狂喜、绝望、暴怒、憎恶、欲望、悲哀、害羞、骄傲、自信、惊喜、犹豫、忧愁、忧郁、激动
+	private String emotion = "快乐";// 快乐、悲伤、恐惧、愤怒、焦虑、惊讶、尴尬、羞耻、内疚、鄙夷、厌恶、狂喜、绝望、暴怒、憎恶、欲望、悲哀、害羞、骄傲、自信、惊喜、犹豫、忧愁、忧郁、激动
 	private UserType userType;
-	private Map<String, String>[] ext_attr; // 用户扩展属性
+	private Map<String, Map<String, String>> ext_attr; // 用户扩展属性
 	private Interaction interaction;
 
 	public String getUid() {
@@ -46,6 +52,7 @@ public class User {
 	public void setAge(String age) {
 		this.age = Integer.parseInt(age);
 	}
+
 	public void setAge(int age) {
 		this.age = age;
 	}
@@ -66,11 +73,11 @@ public class User {
 		this.userType = userType;
 	}
 
-	public Map<String, String>[] getExt_attr() {
+	public Map<String, Map<String, String>> getExt_attr() {
 		return ext_attr;
 	}
 
-	public void setExt_attr(Map<String, String>[] ext_attr) {
+	public void setExt_attr(Map<String, Map<String, String>> ext_attr) {
 		this.ext_attr = ext_attr;
 	}
 
@@ -82,27 +89,73 @@ public class User {
 		this.interaction = interaction;
 	}
 
-
-	/**
-	 * 随机名称
-	 * 
-	 * @return
-	 */
-	public static User initUserIns() {
-		return initUserIns(RandomUtil.random_username());
-	}
-
 	/**
 	 * 返回uid为name的User对象实例 先从DB查找历史记录，若存在，从DB加载，不存在创建新用户.
 	 * 
-	 * @param name
+	 * @param scnner
 	 * @return
 	 */
-	public static User initUserIns(String name) {
-		User u = new User();
-		u.setUid(name);
-
+	public static User initUserIns(Scanner scnner) {
+		String str = scnner.nextLine();
+		User u = loadUser(str);
+		if(u == null){
+			u = new User();
+			u.setUid(UuidUtil.get32UUID());
+			u.setName(str);
+			
+			Map<String, Map<String, String>> ext_attr = new HashMap<>();
+			Map<String, String> setting = new HashMap<String, String>();
+			
+			InteractionOutput.output("tv","你是初次使用，需要完成一些配置。请设置我的性别。");
+			str = scnner.nextLine();
+			str = str.matches(".*{男|man|}.*")?"男":"女";
+			InteractionOutput.output("tv","你选择的是"+str+"，我的发音和性格将按"+str+"性设置。");
+			setting.put("sex",str);
+			
+			InteractionOutput.output("tv","请设置我的年龄。");
+			setting.put("age",getAgeFrom(scnner));
+			
+			InteractionOutput.output("tv","好了，现在给我起个名字吧。");
+			str = scnner.nextLine();
+			setting.put("name",str);
+			
+			
+			ext_attr.put("setting", setting);
+			u.setExt_attr(ext_attr);
+			
+			//RandomUtil.random_username()
+		}else{
+			
+		}
 		return u;
+	}
+
+	private static String getAgeFrom(Scanner scnner) {
+		String age = null;
+		for (int i = 0; i < 3; i++) {
+			String str = scnner.nextLine();
+			Matcher matcher = Pattern.compile("([一二三四五六七八九十百]+)").matcher(str); // 匹配“二十”
+			if (matcher.find()) {
+				str = matcher.group(1);
+				age = StringUtil.chineseToNum(str).toString();
+				System.out.println(age);
+			}else{
+				matcher = Pattern.compile("(\\d+)").matcher(str); // 匹配“19”
+				if (matcher.find()) {
+					age = matcher.group(1);
+					System.out.println(str);
+				}else{
+					InteractionOutput.output("tv","请告诉我年龄，如21岁。");
+				}
+			}
+		}
+		
+		return age;
+	}
+
+	private static User loadUser(String name2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/**
@@ -118,10 +171,10 @@ public class User {
 		// 3.[提取用户扩展属性ext_attr]
 
 	}
-	
+
 	public static void saveAll(User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
