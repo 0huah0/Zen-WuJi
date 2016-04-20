@@ -1,10 +1,11 @@
 package me.shizh.ai.zen.descion.md;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 public class TestMd implements MdBase {
-	public String doMachineDecision(String input) {
-		return "Answer of \'" + input + "'.";
+	public String doMachineDecision(List<String> input) {
+		return "input.size() =\'" + input.size() + "'.";
 	}
 	
 	

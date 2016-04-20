@@ -18,7 +18,7 @@ public class User {
 	private int age = 28;
 	private String emotion = "快乐";// 快乐、悲伤、恐惧、愤怒、焦虑、惊讶、尴尬、羞耻、内疚、鄙夷、厌恶、狂喜、绝望、暴怒、憎恶、欲望、悲哀、害羞、骄傲、自信、惊喜、犹豫、忧愁、忧郁、激动
 	private UserType userType;
-	private Map<String, Map<String, String>> ext_attr; // 用户扩展属性
+	private Map<String, Map<String, String>> ext_attr = new HashMap<>(); // 用户扩展属性
 	private Interaction interaction;
 
 	public String getUid() {
@@ -74,6 +74,9 @@ public class User {
 	}
 
 	public Map<String, Map<String, String>> getExt_attr() {
+		if(ext_attr.get("SETTING")==null){
+			ext_attr.put("SETTING", new HashMap<String, String>());
+		}
 		return ext_attr;
 	}
 
@@ -103,13 +106,13 @@ public class User {
 			u.setUid(UuidUtil.get32UUID());
 			u.setName(str);
 			
-			Map<String, Map<String, String>> ext_attr = new HashMap<>();
 			Map<String, String> setting = new HashMap<String, String>();
+			u.getExt_attr().put("SETTING", setting);
 			
 			InteractionOutput.output("tv","你是初次使用，需要完成一些配置。请设置我的性别。");
 			str = scnner.nextLine();
-			str = str.matches(".*{男|man|}.*")?"男":"女";
-			InteractionOutput.output("tv","你选择的是"+str+"，我的发音和性格将按"+str+"性设置。");
+			str = str.matches(".*(男|man|爷们).*")?"男":"女";
+			InteractionOutput.output("tv","系统提示：你选择的是"+str+"，我的发音和性格将按"+str+"性设置。");
 			setting.put("sex",str);
 			
 			InteractionOutput.output("tv","请设置我的年龄。");
@@ -118,10 +121,6 @@ public class User {
 			InteractionOutput.output("tv","好了，现在给我起个名字吧。");
 			str = scnner.nextLine();
 			setting.put("name",str);
-			
-			
-			ext_attr.put("setting", setting);
-			u.setExt_attr(ext_attr);
 			
 			//RandomUtil.random_username()
 		}else{
@@ -133,20 +132,32 @@ public class User {
 	private static String getAgeFrom(Scanner scnner) {
 		String age = null;
 		for (int i = 0; i < 3; i++) {
-			String str = scnner.nextLine();
-			Matcher matcher = Pattern.compile("([一二三四五六七八九十百]+)").matcher(str); // 匹配“二十”
+			if(StringUtil.isNull(age)){
+				age = parseAge(scnner.nextLine());
+			}
+		}
+		if(age == null){
+			age = "21";
+		}
+		
+		InteractionOutput.output("tv","系统提示:已设置年龄为"+age+"岁。如果以后需要修改，请告诉我'修改年龄为N岁'。");
+		
+		return age;
+	}
+
+	public static String parseAge(String str) {
+		String age = null;
+		
+		Matcher matcher = Pattern.compile("([一二三四五六七八九十百]+)").matcher(str); // 匹配“二十”
+		if (matcher.find()) {
+			str = matcher.group(1);
+			age = StringUtil.chineseToNum(str).toString();
+		}else{
+			matcher = Pattern.compile("(\\d+)").matcher(str); // 匹配“19”
 			if (matcher.find()) {
-				str = matcher.group(1);
-				age = StringUtil.chineseToNum(str).toString();
-				System.out.println(age);
+				age = matcher.group(1);
 			}else{
-				matcher = Pattern.compile("(\\d+)").matcher(str); // 匹配“19”
-				if (matcher.find()) {
-					age = matcher.group(1);
-					System.out.println(str);
-				}else{
-					InteractionOutput.output("tv","请告诉我年龄，如21岁。");
-				}
+				InteractionOutput.output("tv","请告诉我年龄，如21岁。");
 			}
 		}
 		

@@ -1,0 +1,7 @@
+[
+	{
+		"_regular": ".*修改(?:你的|)(年龄|性别|名字)+为(.*)",
+		"default_": "指令无法识别。",
+		"md_": "me.shizh.ai.zen.descion.md.ChangeSettingMd"
+	}
+]

@@ -174,7 +174,7 @@ public class BaiduTts extends Thread {
 	 */
 	private static int getVoicePlayPriority(String text) {
 		int priority = 0;
-		if(text.matches("^{系统提示|警告}.*")){
+		if(StringUtil.isNotNull(text) && text.matches("^(系统提示|警告).*")){
 			priority = 9;
 		}else{
 			

@@ -3,6 +3,8 @@ package me.shizh.ai.zen.features.voice;
 import java.util.HashMap;
 
 import me.shizh.ai.zen.ZenWuJi;
+import me.shizh.common.util.StringUtil;
+import me.shizh.common.util.UuidUtil;
 
 import com.baidu.tts.BaiduTts;
 
@@ -26,19 +28,24 @@ public class Voice {
 		 * spd 选填 语速，取值 0-9，默认为 5 pit 选填 音调，取值 0-9，默认为 5 vol 选填 音量，取值 0-9，默认为 5
 		 * per 选填 发音人选择，取值 0-1 ；0 为女声，1 为男声，默认为女声
 		 */
+		String sex = ZenWuJi.USER.getExt_attr().get("SETTING").get("sex");
+		String name = ZenWuJi.USER.getExt_attr().get("SETTING").get("name");
+		
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("cuid", ZenWuJi.USER.getUid());
+		map.put("cuid", StringUtil.isNull(name)?UuidUtil.get32UUID():name);	
 		map.put("lan", "zh"); // 是中式发言吗
 		map.put("spd", decideSpd());
 		map.put("pit", decidePit());
 		map.put("vol", decideVol());
-		map.put("per", "女".equals(ZenWuJi.USER.getSex()) ? "0" : "1");
+		map.put("per", "女".equals(sex) ? "0" : "1");
 		
 		BaiduTts.text2voice(input, map);
 	}
 
 	private static String decideVol() {
-		int age = ZenWuJi.USER.getAge();
+		String agestr = ZenWuJi.USER.getExt_attr().get("SETTING").get("age");
+		int age = StringUtil.isNull(agestr)?21:Integer.valueOf(agestr);
+		
 		int vol = 5;
 		
 		//年龄影响
@@ -70,7 +77,9 @@ public class Voice {
 	}
 
 	private static String decidePit() {
-		int age = ZenWuJi.USER.getAge();
+		String agestr = ZenWuJi.USER.getExt_attr().get("SETTING").get("age");
+		int age = StringUtil.isNull(agestr)?21:Integer.valueOf(agestr);
+		
 		int vol = 5;
 		
 		//年龄影响
@@ -98,7 +107,9 @@ public class Voice {
 	}
 
 	private static String decideSpd() {
-		int age = ZenWuJi.USER.getAge();
+		String agestr = ZenWuJi.USER.getExt_attr().get("SETTING").get("age");
+		int age = StringUtil.isNull(agestr)?21:Integer.valueOf(agestr);
+		
 		int vol = 5;
 		
 		//年龄影响

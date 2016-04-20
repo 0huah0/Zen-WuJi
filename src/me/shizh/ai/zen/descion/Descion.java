@@ -54,10 +54,26 @@ public class Descion {
 				Pattern pattern = Pattern.compile(c.get_regular());
 		        Matcher matcher = pattern.matcher(input); 
 		        if(matcher.find()) {
-		            output = match(c, input);
-		            for(int i=1;i<=matcher.groupCount();i++){
-		            	output = output.replace("{"+i+"}", matcher.group(i));
+		            //output = match(c, input);
+		        	output = c.getDefault_(); // 使用default
+		        	
+		        	List<String> grps = new ArrayList<String>();
+		        	for(int i=1;i<=matcher.groupCount();i++){
+		        		grps.add(matcher.group(i));
+		        		if(StringUtil.isNotNull(output)){
+		        			output = output.replace("{"+i+"}", matcher.group(i));
+		        		}
 		            }
+		        	
+		            if (StringUtil.isNotNull(c.getMd_())) { // 使用MD
+		    			output = ClassUtil.md_invoke(c.getMd_(),"doMachineDecision",grps);
+		    		} else {
+		    			if (StringUtil.isNotNull(c.getRandom_())) {// 使用随机
+		    				output = c.getRandom_().get(
+		    						RandomUtil.random(0, c.getRandom_().size()));
+		    			}
+		    		}
+
 		            outputs.add(output);
 		        }
 			}catch(PatternSyntaxException e){
@@ -65,26 +81,6 @@ public class Descion {
 			}
 		}
 		return outputs;
-	}
-
-	private static String match(Category c, String input) {
-		String output = null;
-
-		if (StringUtil.isNotNull(c.getMd_())) { // 使用MD
-			output = ClassUtil.md_invoke(c.getMd_(), "doMachineDecision",
-					input);
-		} else {
-			if (StringUtil.isNotNull(c.getRandom_())) {// 使用随机
-				output = c.getRandom_().get(
-						RandomUtil.random(0, c.getRandom_().size()));
-			}
-		}
-
-		if (StringUtil.isNull(output)) { // 使用default
-			output = c.getDefault_();
-		}
-
-		return output;
 	}
 
 
@@ -98,6 +94,7 @@ public class Descion {
 		List<String> ls = new ArrayList<String>();
 		
 		//TODO 分类到CATEGORIES的类型中
+		ls.add("main");
 		ls.add("complain");
 		return ls;
 	}
