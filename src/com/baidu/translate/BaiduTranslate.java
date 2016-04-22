@@ -68,49 +68,8 @@ public class BaiduTranslate {
 	}
 
 
-	public static void text2voice(String text, HashMap<String, String> params) {
-		HashMap<String, String> map = new HashMap<String,String>();
-		map.put( "tex", text );	//!!!
-		map.put( "cuid", "42dc207dc395ad" );
-		map.put( "lan", "zh" );
-		map.put( "spd", "6" );
-		map.put( "pit", "4" );
-		map.put( "vol", "7" );
-		map.put( "per", "1" );
-		
-		//合并参数
-		for(Iterator<String> it = params.keySet().iterator();it.hasNext();){
-			String key = it.next();
-			map.put(key, params.get(key));
-		}
-		
-	}
-	
-	public static String voice2text(String input) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	public static void main(String[] args) {
 		
-		String text = "系统提示，联网失败。";
-		/*
-		 * spd 选填 语速，取值 0-9，默认为 5 
-		 * pit 选填 音调，取值 0-9，默认为 5 
-		 * vol 选填 音量，取值 0-9，默认为 5
-		 * per 选填 发音人选择，取值 0-1 ；0 为女声，1 为男声，默认为女声
-		 */
-		HashMap<String, String> map = new HashMap<String,String>();
-		map.put( "tex", text );
-		map.put( "cuid", "42dc207dc395ad" );
-		map.put( "lan", "zh" );
-		map.put( "spd", "6" );
-		map.put( "pit", "4" );
-		map.put( "vol", "7" );
-		map.put( "per", "1" );
-		
-		
-		System.out.println("done!");
 	}
 
 	

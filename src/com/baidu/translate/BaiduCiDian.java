@@ -1,25 +1,19 @@
 package com.baidu.translate;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
+
+import me.shizh.common.util.FileUtil;
+import me.shizh.common.util.StringUtil;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
-import me.shizh.common.util.FileUtil;
-import me.shizh.common.util.MD5Util;
-import me.shizh.common.util.RandomUtil;
-import me.shizh.common.util.StringUtil;
 
 //
 //POST：
@@ -46,10 +40,11 @@ public class BaiduCiDian {
 
 	private final static String httpUrl = "http://fanyi.baidu.com/v2transapi";
 
-	private static HashMap<String, String> translate(String query, String from,
-			String to) {
+	private static HashMap<String, String> translate(String query, String from, String to) {
 		HashMap<String, String> map = new HashMap<String, String>();
-
+		map.put("word", query);
+		map.put("lang", from);
+		
 		URL url = null;
 		PrintWriter out = null;
 		HttpURLConnection conn;
@@ -80,8 +75,7 @@ public class BaiduCiDian {
 			if (200 == rcode) {
 				String respStr = FileUtil.inputStream2String(conn.getInputStream());
 				if(StringUtil.isNotNull(respStr)){
-					map = createMap(map,from,respStr);
-					
+					fillMap(map,from,respStr);
 				}
 			}
 
@@ -90,40 +84,86 @@ public class BaiduCiDian {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		
-
 		return map;
 	}
 
-	private static HashMap<String, String> createMap(
+	private static HashMap<String, String> fillMap(
 			HashMap<String, String> map, String from, String respStr) {
 		JsonObject jo = new Gson().fromJson(respStr, JsonObject.class);
 		
 		//http://www.atool.org/chinese2unicode.php
+		map.put("trans_result",getStrFromJsonObject(jo,"trans_result.data#0.dst"));
 		if("zh".equals(from)){
-			map.put("trans_result", getStrFromJsonObject(jo,"trans_result.data#0.dst"));
 			map.put("dict_simple", getStrFromJsonObject(jo,"dict_result.zdict.simple.means#0.exp#0.des#0.main"));
-			map.put("dict_pinyin", getStrFromJsonObject(jo,"dict_result.zdict.simple.means#0.pinyin"));
 			map.put("dict_detail", getStrFromJsonObject(jo,"dict_result.zdict.detail.means#0.exp#0.des#.main"));
-			
-			map.put("dict_detail", getStrFromJsonObject(jo,"dict_result.edict.item#0.tr_group#0.example#"));
-			map.put("dict_similar_word", getStrFromJsonObject(jo,"dict_result.edict.item#0.tr_group#0.similar_word#"));
-			map.put("dict_similar_word", getStrFromJsonObject(jo,"dict_result.edict.item#0.tr_group#0.similar_word#"));
-			map.put("spd", "6");
-			map.put("pit", "4");
-			map.put("vol", "7");
-			map.put("per", "1");
+			map.put("dict_pinyin", getStrFromJsonObject(jo,"dict_result.zdict.simple.means#0.pinyin"));
 		}else{
-			map.put("trans_result", getStrFromJsonObject(jo,"trans_result.data#0.dst"));
-			map.put("dict_result", getStrFromJsonObject(jo,"dict_result.edict.item#0.tr_group#0.tr#"));
+			map.put("dict_result",  getStrFromJsonObject(jo,"dict_result.edict.item#0.tr_group#0.tr#"));
 			map.put("dict_example", getStrFromJsonObject(jo,"dict_result.edict.item#0.tr_group#0.example#"));
-			map.put("dict_similar_word", getStrFromJsonObject(jo,"dict_result.edict.item#0.tr_group#0.similar_word#"));
-			map.put("dict_similar_word", getStrFromJsonObject(jo,"dict_result.edict.item#0.tr_group#0.similar_word#"));
+			map.put("dict_similar", getStrFromJsonObject(jo,"dict_result.edict.item#0.tr_group#0.similar_word#"));
 		}
 		
+		map.put("baike_content",getStrFromJsonObject(jo,"dict_result.baike_means.content"));
+		map.put("baike_image",	getStrFromJsonObject(jo,"dict_result.baike_means.image"));
+		map.put("baike_link",	getStrFromJsonObject(jo,"dict_result.baike_means.link"));
 		
 		return map;
+	}
+
+
+	/**
+	 * eg：System.out.println(getStrFromJsonObject(jo,"edict.item#0.tr_group#0.tr#"));
+	 * eg:item#2表示取数组item的第二是元素值
+	 * @param jo
+	 * @param key
+	 * @return
+	 */
+	private static String getStrFromJsonObject(JsonObject jo, String key) {
+		System.out.println(key);
+		JsonObject tmp = jo;
+		String result = "";
+		String []keys = key.split("[.]");
+		for(int i=0;i<keys.length;i++){
+			if(keys[i].contains("#")){
+				String []kk = keys[i].split("[#]");
+				if(kk.length==1){
+					if(StringUtil.isNull(tmp.get(kk[0]))){
+						break;	//!!!
+					}
+					JsonArray ja = tmp.get(kk[0]).getAsJsonArray();
+					for(int j=0;j<ja.size();j++){
+						if(ja.get(j) instanceof JsonObject){
+							String str = key.substring(key.lastIndexOf(".")+1);
+							result += getStrFromJsonObject(ja.get(j).getAsJsonObject(),str);
+						}else{
+							result += ja.get(j).getAsString()+"\n";
+						}
+					}
+					break;
+				}else{
+					tmp = tmp.get(kk[0]).getAsJsonArray().get(Integer.parseInt(kk[1])).getAsJsonObject();
+				}
+			}else{	//dict_result.edict.item#0.tr_group#0.tr#
+				if(StringUtil.isNull(tmp.get(keys[i]))){
+					break;	//!!!
+				}
+				if(tmp.get(keys[i]) instanceof JsonObject){
+					tmp = tmp.get(keys[i]).getAsJsonObject();
+				}else{
+					result = tmp.get(keys[i]).getAsString();
+				}
+			}
+		}
+		if(StringUtil.isNull(result)){
+			result = tmp.getAsString();
+		}
+		
+		return result;
+	}
+
+	public static HashMap<String, String> query(String word){
+		boolean isZh = word.matches("^[\u4e00-\u9fa5]{2,}$"); //汉字
+		return translate(word,!isZh?"en":"zh",isZh?"en":"zh");
 	}
 
 	public static void main(String[] args) {
@@ -134,36 +174,5 @@ public class BaiduCiDian {
 		System.out.println(map.get(""));
 
 	}
-
-	/**
-	 * eg：System.out.println(getStrFromJsonObject(jo,"edict.item#0.tr_group#0.tr#"));
-	 * @param jo
-	 * @param key
-	 * @return
-	 */
-	private static String getStrFromJsonObject(JsonObject jo, String key) {
-		JsonObject tmp = jo;
-		String result = "";
-		for(String k : key.split("[.]")){
-			if(k.contains("#")){
-				String []kk = k.split("[#]");
-				if(kk.length==1){
-					JsonArray ja = tmp.get(kk[0]).getAsJsonArray();
-					for(int i=0;i<ja.size();i++){
-						result += ja.get(i).getAsString()+"\n";
-					}
-				}else{
-					tmp = tmp.get(kk[0]).getAsJsonArray().get(Integer.parseInt(kk[1])).getAsJsonObject();
-				}
-			}else{
-				tmp = tmp.get(k).getAsJsonObject();
-			}
-		}
-		if(StringUtil.isNull(result)){
-			result = tmp.getAsString();
-		}
-		
-		return result;
-	}
-
+	
 }
