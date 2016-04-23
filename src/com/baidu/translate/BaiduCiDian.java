@@ -124,7 +124,7 @@ public class BaiduCiDian {
 		String result = "";
 		String []keys = key.split("[.]");
 		for(int i=0;i<keys.length;i++){
-			if(keys[i].contains("#")){
+			if(keys[i].contains("#")){ //dict_result.edict.item#0.tr_group#0.tr#
 				String []kk = keys[i].split("[#]");
 				if(kk.length==1){
 					if(StringUtil.isNull(tmp.get(kk[0]))){
@@ -143,7 +143,7 @@ public class BaiduCiDian {
 				}else{
 					tmp = tmp.get(kk[0]).getAsJsonArray().get(Integer.parseInt(kk[1])).getAsJsonObject();
 				}
-			}else{	//dict_result.edict.item#0.tr_group#0.tr#
+			}else{	
 				if(StringUtil.isNull(tmp.get(keys[i]))){
 					break;	//!!!
 				}
@@ -153,9 +153,9 @@ public class BaiduCiDian {
 					result = tmp.get(keys[i]).getAsString();
 				}
 			}
-		}
-		if(StringUtil.isNull(result)){
-			result = tmp.getAsString();
+			if(i == keys.length){
+				result = tmp.getAsString();
+			}
 		}
 		
 		return result;
@@ -167,7 +167,7 @@ public class BaiduCiDian {
 	}
 
 	public static void main(String[] args) {
-		String text = "音量";
+		String text = "正则表达式";
 		String from = "zh";
 		String to = "en";
 		Map<String, String> map = translate(text, from, to);

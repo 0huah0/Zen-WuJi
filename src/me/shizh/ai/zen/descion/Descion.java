@@ -73,8 +73,9 @@ public class Descion {
 		    						RandomUtil.random(0, c.getRandom_().size()));
 		    			}
 		    		}
-
-		            outputs.add(output);
+		            if(StringUtil.isNotNull(output) && !"null".equals(output)){
+		            	outputs.add(output);
+		            }
 		        }
 			}catch(PatternSyntaxException e){
 				System.out.println(e.getMessage());

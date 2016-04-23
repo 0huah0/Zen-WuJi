@@ -1,6 +1,5 @@
 [
 	{
-	//正则表达式  匹配 引号外的 http://www.imagecode.net/service/regex.aspx
 		"_regular": ".*(大前|前|昨|今|明|后)天是?星期几.[^\"']*",
 		"default_": "系统无法识别。",
 		"random_": [

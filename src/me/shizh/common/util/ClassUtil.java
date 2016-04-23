@@ -1,6 +1,5 @@
 package me.shizh.common.util;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 public class ClassUtil {
@@ -15,13 +14,11 @@ public class ClassUtil {
 		String output = null;
 		try {
 			Class<?> clz = Class.forName(classname);
-			Object o = clz.newInstance();
-			Method m = clz.getMethod(method, List.class);
-			output = (String) m.invoke(o, grps);
+			output = (String) clz.getMethod(method, List.class).invoke(clz.newInstance(), grps);
 		} catch(ClassNotFoundException e){
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return output;
 	}

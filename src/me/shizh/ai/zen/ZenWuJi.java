@@ -22,13 +22,17 @@ public class ZenWuJi {
 	}
 
 	public static void main(String[] args) {
-		//http://tool.oschina.net/regex/
-//		StringUtil.chineseToNum("");
+//        Matcher matcher = Pattern.compile("(<num>\\d)+(<str>\\w)+")
+//        		.matcher("12312adasd"); 
+//        if(matcher.find()) {
+//        	System.out.println(matcher.group("str"));
+//        }
 //		System.exit(0);
+		
 		
 		Scanner scnner = new Scanner(System.in);
 		//InteractionOutput.output("tv","请输入你的用户名:");
-		//USER = User.initUserIns(scnner);
+		USER = User.initUserIns(scnner);
 		InteractionOutput.output("vt","系统提示：正在启动,请稍等...");
 		CATEGORIES = Category.loadCategories();
 		
@@ -43,9 +47,9 @@ public class ZenWuJi {
 				saveAll();	//退出前持久化信息
 			}
 			
-			
 			String output = Response.text_answer(Response.InputType.TEXT, input);
-			System.out.println("Zen:"+ output);
+			String zen_name = USER.getExt_attr().get("SETTING").get("name");
+			System.out.println(zen_name +":"+ output);
 			Voice.doVoice(output);
 			
 		}
