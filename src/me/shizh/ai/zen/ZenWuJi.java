@@ -31,7 +31,7 @@ public class ZenWuJi {
 		
 		
 		Scanner scnner = new Scanner(System.in);
-		//InteractionOutput.output("tv","请输入你的用户名:");
+		InteractionOutput.output("tv","请输入你的用户名:");
 		USER = User.initUserIns(scnner);
 		InteractionOutput.output("vt","系统提示：正在启动,请稍等...");
 		CATEGORIES = Category.loadCategories();

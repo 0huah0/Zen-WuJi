@@ -167,7 +167,7 @@ public class BaiduCiDian {
 	}
 
 	public static void main(String[] args) {
-		String text = "正则表达式";
+		String text = "量子力学";
 		String from = "zh";
 		String to = "en";
 		Map<String, String> map = translate(text, from, to);

@@ -1,0 +1,386 @@
+=reply==>
+name=reset==>
+:-)==> smile 
+:)==> smile 
+,)==> smile 
+;)==> smile 
+;-)==> smile 
+&quot;==>
+/==> 
+&gt;==> gt 
+&lt;==> lt 
+(==> 
+)==> 
+&amp;==> 
+===> 
+  ==> 
+ l a ==> la 
+ o k ==> ok 
+ p s ==> ps 
+ ohh==> oh
+ hehe==> he
+ haha==> ha    
+ hellp ==> help 
+ becuse ==> because 
+ beleive ==> believe 
+ becasue ==> because 
+ becuase ==> because 
+ becouse ==> because 
+ practice ==> practise 
+ reductionalism ==> reductionism 
+ loebner price ==> loebner prize 
+ its a ==> it is a 
+ noi ==> no I 
+ fav ==> favorite 
+ yesi ==> yes I 
+ yesit ==> yes it 
+ iam ==> I am 
+ welli ==> well I 
+ wellit ==> well it 
+ amfine ==> am fine 
+ aman ==> am an 
+ amon ==> am on 
+ amnot ==> am not 
+ realy ==> really 
+ iamusing ==> I am using 
+ amleaving ==> am leaving 
+ mis placed ==> misplaced 
+ yeah ==> yes 
+ yep ==> yes 
+ yha ==> yes 
+ yuo ==> you 
+ wanna ==> want to 
+ iama ==> I am a 
+ iamasking ==> I am asking 
+ iamdoing ==> I am doing 
+ iamfrom ==> I am from 
+ iamin ==> I am in 
+ iamok ==> I am ok 
+ iamsorry ==> I am sorry 
+ iamtalking ==> I am talking 
+ iamtired ==> I am tired 
+ down load ==> download 
+ remeber ==> remember 
+ waht ==> what 
+ wallance ==> wallace 
+ you r ==> you are 
+ u ==> you 
+ ur ==> your 
+ you'd ==> you would 
+ you're ==> you are 
+ you re ==> you are 
+ you've ==> you have 
+ you ve ==> you have 
+ you'll ==> you will 
+ you ll ==> you will 
+ youre ==> you are 
+ didnt ==> did not 
+ didn't ==> did not 
+ did'nt ==> did not 
+ couldn't ==> could not 
+ couldn t ==> could not 
+ didn't ==> did not 
+ didn t ==> did not 
+ ain't ==> is not 
+ ain t ==> is not 
+ isn't ==> is not 
+ isn t ==> is not 
+ isnt ==> is not 
+ it'll ==> it will 
+ it's ==> it is 
+ it s ==> it is 
+ are'nt ==> are not 
+ arent ==> are not 
+ aren't ==> are not 
+ aren t ==> are not 
+ arn t ==> are not 
+ where's ==> where is 
+ where s ==> where is 
+ haven't ==> have not 
+ havent ==> have not 
+ hasn't ==> has not 
+ hasn t ==> has not 
+ weren t ==> were not 
+ weren't ==> were not 
+ werent ==> were not 
+ can't ==> can not 
+ can t ==> can not 
+ cant ==> can not 
+ cannot ==> can not 
+ whos ==> who is 
+ how's ==> how is 
+ how're ==> how are 
+ how s ==> how is 
+ how'd ==> how did 
+ how d ==> how did 
+ hows ==> how is 
+ whats ==> what is 
+ name's ==> name is 
+ who's ==> who is 
+ who s ==> who is 
+ waht's ==> what is 
+ what's ==> what is 
+ what s ==> what is 
+ thanks ==> thank you 
+ thanks.==> thank you.
+ thanks!==> thank you!
+ that's ==> that is 
+ there's ==> there is 
+ there s ==> there is 
+ theres ==> there is 
+ thats ==> that is 
+ whats ==> what is 
+ doesn't ==> does not 
+ doesn t ==> does not 
+ doesnt ==> does not 
+ don't ==> do not 
+ don t ==> do not 
+ dont ==> do not 
+ do nt ==> do not 
+ do'nt ==> do not 
+ won't ==> will not 
+ wont ==> will not 
+ won t ==> will not 
+ let's ==> let us 
+ they're ==> they are 
+ they re ==> they are 
+ wasn't ==> was not 
+ wasn t ==> was not 
+ wasnt ==> was not 
+ hadn't ==> had not 
+ hadn t ==> had not 
+ wouldn't ==> would not 
+ wouldn t ==> would not 
+ wouldnt ==> would not 
+ shouldn't ==> should not 
+ shouldnt ==> should not 
+ favourite ==> favorite 
+ colour ==> color 
+ we'll ==> we will 
+ we ll ==> we will 
+ he'll ==> he will 
+ he ll ==> he will 
+ i'll ==> I will 
+ ive ==> I have 
+ i've ==> I have 
+ i ve ==> I have 
+ i'd ==> I would 
+ i'm ==> I am 
+ i m ==> I am 
+ we've ==> we have 
+ we're ==> we are 
+ she's ==> she is 
+ shes ==> she is 
+ she'd ==> she would 
+ she d ==> she would 
+ shed ==> she would 
+ he'd ==> he would 
+ he d ==> he would 
+ hed ==> he would 
+ he's ==> he is 
+ we ve ==> we have 
+ we re ==> we are 
+ she s ==> she is 
+ he s ==> he is 
+ç==>c
+á==>a
+é==>e
+í==>i
+ó==>o
+ú==>u
+â==>a
+ê==>e
+ô==>o
+ã==>a
+õ==>o
+ü==>u
+`==> 
+.&quot;==> &quot;
+?&quot;==> &quot;
+!&quot;==> &quot;
+{==> beginscript 
+}==> endscript 
+/==> 
+\==> 
+:0==> 0
+: 0==>  0
+:1==> 1
+: 1==>  1
+:2==> 2
+: 2==>  2
+:3==> 3
+: 3==>  3
+:4==> 4
+: 4==>  4
+:5==> 5
+: 5==>  5
+.0==>p0
+.1==>p1
+.2==>p3
+.4==>p4
+.5==>p5
+.6==>p6
+.7==>p7
+.8==>p8
+.9==>p9
+ dr. ==> Dr 
+ dr.w==> Dr w
+ dr . ==> Dr 
+ mr. ==> Mr 
+ mrs. ==> Mrs 
+ st. ==> St 
+www.==> www 
+ botspot.==> botspot dot 
+ amused.com==> amused dot com 
+ whatis.==> whatis dot 
+.com ==> com 
+.net ==> net 
+.org ==> dot org 
+.edu ==> dot edu 
+.uk ==> dot uk 
+.jp ==> dot jp 
+.au ==> dot au 
+.co ==> dot co 
+.ac ==> dot ac 
+ o.k. ==> ok 
+ o. k. ==> ok 
+ l.l. ==> l l 
+ p.s. ==> ps 
+ alicebot ==> ALICE 
+ a l i c e ==> ALICE 
+ a.l.i.c.e. ==> ALICE 
+ a.l.i.c.e ==> ALICE 
+ i.c.e ==> i c e 
+ e l v i s ==> ELVIS 
+ e.l.v.i.s. ==> ELVIS 
+ e.l.v.i.s ==> ELVIS 
+ v.i.s ==> v i s 
+ h a l ==> hal 
+ h.a.l. ==> hal 
+ u s a ==> USA 
+ u. s. a. ==> USA 
+ u.s.a. ==> USA 
+ u.s. ==> USA 
+ ph.d. ==> PhD 
+ a.==> a 
+ b.==> b 
+ c.==> c 
+ d.==> d 
+ e.==> e 
+ f.==> f 
+ g.==> g 
+ h.==> h 
+ i.==> i 
+ j.==> j 
+ k.==> k 
+ l.==> l 
+ m.==> m 
+ n.==> n 
+ p.==> p 
+ o.==> o 
+ q.==> q 
+ r.==> r 
+ s.==> s 
+ t.==> t 
+ u.==> u 
+ v.==> v 
+ x.==> x 
+ y.==> y 
+ w.==> w 
+ z.==> z 
+.aiml==> aiml
+.html==> html
+.shtml==> shtml
+.jar==> jar
+.zip==> zip
+, but ==>.  
+, and ==>.
+,and "  replace=".    
+,but ==>.  
+  but ==>.  
+  and ==>.  
+, i ==>.  I 
+, you ==>.  you 
+,i ==>.  I 
+,you ==>.  you 
+, what ==>.  what 
+,what ==>.  what 
+, do ==>.  do 
+,do ==>.  do 
+he ==>she
+she ==>he
+to him ==>to her
+for him ==>for her
+with him ==>with her
+on him ==>on her
+in him ==>in her
+to her ==>to him
+for her ==>for him
+with her ==>with him
+on her ==>on him
+in her ==>in him
+his ==>her
+her ==>his
+him ==>her
+I was ==>he or she was
+he was ==>I was
+she was ==>I was
+I am ==>he or she is
+I ==>he or she
+he ==>I
+she ==>I
+me ==>him or her
+him ==>me
+her ==>me
+my ==>his or her
+myself ==>him or herself
+mine ==>his or hers
+with you ==>with me
+with me ==>with you
+to you ==>to me
+to me ==>to you
+of you ==>of me
+of me ==>of you
+for you ==>for me
+for me ==>for you
+give you ==>give me
+give me ==>give you
+giving you ==>giving me
+giving me ==>giving you
+gave you ==>gave me
+gave me ==>gave you
+make you ==>make me
+make me ==>make you
+made you ==>made me
+made me ==>made you
+take you ==>take me
+take me ==>take you
+save you ==>save me
+save me ==>save you
+tell you ==>tell me
+tell me ==>tell you
+telling you ==>telling me
+telling me ==>telling you
+told you ==>told me
+told me ==>told you
+are you ==>am I
+am I ==>are you
+you are ==>I am
+I am ==>you are
+you will ==>I will
+you ==>me
+me ==>you
+your ==>my
+my ==>your
+yours ==>mine
+mine ==>yours
+yourself ==>myself
+myself ==>yourself
+I was ==>you were
+you were ==>I was
+I am ==>you are
+you are ==>I am
+I ==>you
+me ==>you
+my ==>your
+your ==>my
