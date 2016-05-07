@@ -5,6 +5,13 @@
 3,应该要加入不回应机制，如遇到用户回复"好的"，"嗯"，"呵呵"这种时需要随机的选择不回应，等待对方继续或等待触发主动模式。
 4,需要持久化
 
+=======================
+>离线汉译英词典  me.shizh.ai.zen.features.text.TuTuDict
+>在线百度词典[词典，翻译，百科]（爬虫）com.baidu.translate.BaiduCiDian
+>在线百度翻译【未完成】com.baidu.translate.BaiduTranslate
+>在线百度文本转语音com.baidu.tts.BaiduTts
+>离线汉语字典[读音，笔画，笔顺，部首]com.siqi.HanDict
+>轻量级关系型存储me.shizh.db.derby.Derby
 
 
 正则表达式
