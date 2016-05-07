@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import me.shizh.common.util.FileUtil;
@@ -14,6 +15,7 @@ import me.shizh.common.util.StringUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 //
 //POST：
@@ -141,7 +143,9 @@ public class BaiduCiDian {
 					}
 					break;
 				}else{
-					tmp = tmp.get(kk[0]).getAsJsonArray().get(Integer.parseInt(kk[1])).getAsJsonObject();
+					if(tmp.get(kk[0]) != null){
+						tmp = tmp.get(kk[0]).getAsJsonArray().get(Integer.parseInt(kk[1])).getAsJsonObject();
+					}
 				}
 			}else{	
 				if(StringUtil.isNull(tmp.get(keys[i]))){
@@ -149,8 +153,10 @@ public class BaiduCiDian {
 				}
 				if(tmp.get(keys[i]) instanceof JsonObject){
 					tmp = tmp.get(keys[i]).getAsJsonObject();
-				}else{
-					result = tmp.get(keys[i]).getAsString();
+				}else if(tmp.get(keys[i]) instanceof List){
+					
+				}else if(tmp.get(keys[i]) instanceof JsonPrimitive){
+					result = tmp.get(keys[i]).getAsJsonPrimitive().getAsString();
 				}
 			}
 			if(i == keys.length){
@@ -167,7 +173,7 @@ public class BaiduCiDian {
 	}
 
 	public static void main(String[] args) {
-		String text = "正则表达式";
+		String text = "量子力学";
 		String from = "zh";
 		String to = "en";
 		Map<String, String> map = translate(text, from, to);

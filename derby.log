@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sat Apr 23 18:11:14 CST 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0154-429a-13e9-00000340b8f8 
+Tue May 03 17:39:04 CST 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0154-75fc-3961-000003079a88 
 on database directory F:\DevData\workspace\Zen-WuJi\data\derby_data\zen_wuji with class loader sun.misc.Launcher$AppClassLoader@146ccf3e 
 Loaded from file:/F:/DevData/workspace/Zen-WuJi/libs/derby.jar
 java.vendor=Oracle Corporation
