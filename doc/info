@@ -1,11 +1,37 @@
-1,通过在配json文件中为category的md设置一个可以访问到的java类，可以完成通过该类是逻辑答复input，要求是该类有个public String doMachineDecision(String input)方法。
-2,category支持正则表达式，并能在output中通过{n}引用正则表达式中mapping到的matcher.group(n);
+〇、驱动及实体实现
+实体的硬件实现及硬件驱动接口，该部分可选用现有可扩展的商用产品，通过在思维决策体统中补充相应的接口调用驱动完成，决策结果的实体表达。
+需要支持：
+1.语音输入（microphone）
+2.语音输出（speaker）
+3.视觉输入（camera）
+4.表情表达（可表达不同程度的快乐、悲伤、恐惧、愤怒、焦虑、惊讶、尴尬、羞耻、内疚、鄙夷、厌恶、狂喜、绝望、暴怒、憎恶、欲望、悲哀、害羞、骄傲、自信、惊喜、犹豫、忧愁、忧郁、激动）
+5.肢体语言表达（可表达不同程度的快乐、悲伤、恐惧、愤怒、焦虑、惊讶、尴尬、羞耻、内疚、鄙夷、厌恶、狂喜、绝望、暴怒、憎恶、欲望、悲哀、害羞、骄傲、自信、惊喜、犹豫、忧愁、忧郁、激动）
+6.自主寻径移动
+	move:"function(x=30m,y=0m,speed=0.5){}",	//在以当前位置左右为x轴，前后为y轴的坐标中用额定移速的0.5移动到x=10m,y=-10m的位置(正右后14.1m)
+	move:"function(degree=15,speed=0.5,distence=5m){}",	//往时钟15分方向（正右）用额定移速的0.5移动5m
+	jump:"function(degree=0,height|middel|low,distence=50%){}",//往正前方以额定跳距的0.5跳，跳高为hml之一
+	smile:"function(time=3s,degree=40%){}" //用0.4的程度笑3秒
+7.其他动作
+	单元动作：拿放抛丢东西；爬；坐；躺；蹲；起立；抬右腿；
+	基础动作：各关节的转动，并自动矫正平衡；
+
+一、思维决策系统
+1.基础平台：
+	图灵测试智力目标是高中毕业，即具有18岁左右的常识[基础数学、物理、化学、历史、语文、文学、地理、生活常识、其他常识]及思维能力。
+2.专业型号：
+	是在基础平台基础上针对某专业的深度优化，即具有职业特性，如医疗顾问、幼儿教育、天文学家、高等数学教育，法律顾问，网络舆情监控者，老人陪聊，
+
+二、TODO LIST
+1.通过在配json文件中为category的md设置一个可以访问到的java类，可以完成通过该类是逻辑答复input，要求是该类有个public String doMachineDecision(String input)方法。
+2.category支持正则表达式，并能在output中通过{n}引用正则表达式中mapping到的matcher.group(n);
 3.支持词典
 ======up 完成
-3,应该要加入不回应机制，如遇到用户回复"好的"，"嗯"，"呵呵"这种时需要随机的选择不回应，等待对方继续或等待触发主动模式。
-4,需要持久化
+3.应该要加入不回应机制，如遇到用户回复"好的"，"嗯"，"呵呵"这种时需要随机的选择不回应，等待对方继续或等待触发主动模式。
+4.需要持久化
+5.数学计算
+6.
 
-=======================
+三、已支持功能=======================
 >离线汉译英词典  me.shizh.ai.zen.features.text.TuTuDict
 >在线百度词典[词典，翻译，百科]（爬虫）com.baidu.translate.BaiduCiDian
 >在线百度翻译【未完成】com.baidu.translate.BaiduTranslate
@@ -13,8 +39,8 @@
 >离线汉语字典[读音，笔画，笔顺，部首]com.siqi.HanDict
 >轻量级关系型存储me.shizh.db.derby.Derby
 
-
-正则表达式
+四、其他
+1.正则表达式
 http://www.imagecode.net/service/regex.aspx
 https://www.debuggex.com/
 http://tool.oschina.net/regex/
