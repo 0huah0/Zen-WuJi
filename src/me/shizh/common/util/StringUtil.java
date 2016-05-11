@@ -21,10 +21,12 @@ import java.util.regex.Pattern;
  * 
  */
 public class StringUtil {
-	
-	public static String[] units = { "", "十", "百", "千", "万", "十万", "百万", "千万", "亿","十亿", "百亿", "千亿", "万亿" };
-	public static char[] numArray = { '零', '一', '二', '三', '四', '五', '六', '七', '八', '九' };
-	
+
+	public static String[] units = { "", "十", "百", "千", "万", "十万", "百万", "千万",
+			"亿", "十亿", "百亿", "千亿", "万亿" };
+	public static char[] numArray = { '零', '一', '二', '三', '四', '五', '六', '七',
+			'八', '九' };
+
 	/**
 	 * 将以逗号分隔的字符串转换成字符串数组
 	 * 
@@ -128,6 +130,7 @@ public class StringUtil {
 	}
 
 	/** 提供字符串到Vector的转变 * */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Vector Str2Vect(String tStr, String sStr) {
 		Vector vector = new Vector();
 		StringTokenizer st = new StringTokenizer(tStr, sStr);
@@ -138,6 +141,7 @@ public class StringUtil {
 	}
 
 	/** 提供Vector到字符串的转变，转变后的字符串以sStr作为分割符 * */
+	@SuppressWarnings("rawtypes")
 	public static String Vect2Str(Vector tVect, String sStr) {
 		String reStr = "";
 		if (tVect.size() > 0)
@@ -149,6 +153,7 @@ public class StringUtil {
 	}
 
 	/** 提供Vector到字符串的转变，转变后的字符串没有分割符 * */
+	@SuppressWarnings("rawtypes")
 	public static String Vect2Str(Vector tVect) {
 		String reStr = "";
 		for (int i = 0; i < tVect.size(); i++) {
@@ -237,6 +242,7 @@ public class StringUtil {
 		return reStr;
 	}
 
+	@SuppressWarnings("static-access")
 	public static double numberDecimal(double d, int i) {
 		BigDecimal b = new BigDecimal(d);
 		BigDecimal bd1 = b.setScale(i, b.ROUND_HALF_UP);
@@ -245,7 +251,7 @@ public class StringUtil {
 	}
 
 	/** 字符串数组到字符串的转变，转变后的字符串没有分割符 * */
-	public static String Strs2Str(String[] tStrs) {
+	public static String strs2Str(String[] tStrs) {
 		String reStr = "";
 		int len = tStrs.length;
 		for (int i = 0; i < len; i++) {
@@ -258,7 +264,8 @@ public class StringUtil {
 	}
 
 	/** 字符串以指定长度进行切割，结果放入Vector对象中 * */
-	public Vector Str2Vect(String tStr, int nleng) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Vector str2Vect(String tStr, int nleng) {
 		int strLength = tStr.length();
 		int ndiv = strLength / nleng;
 		Vector reVect = new Vector();
@@ -477,7 +484,7 @@ public class StringUtil {
 	 * @return 生成的数组
 	 */
 	public static String[] splitToArray(String message, String separator) {
-		List list = new ArrayList();
+		List<String> list = new ArrayList<String>();
 		int start = 0;
 		int index = 0;
 		while ((index = message.indexOf(separator, start)) != -1) {
@@ -543,6 +550,7 @@ public class StringUtil {
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static boolean isNotNull(List l) {
 		if (null != l && l.size() > 0)
 			return true;
@@ -609,6 +617,7 @@ public class StringUtil {
 	 *            结果集对象 参数:
 	 * @return boolean
 	 */
+	@SuppressWarnings("rawtypes")
 	public static boolean isNull(List list) {
 		if (null == list || list.size() == 0)
 			return true;
@@ -705,6 +714,7 @@ public class StringUtil {
 	 * @return String
 	 * @author Administrator 2009-9-20
 	 */
+	@SuppressWarnings("rawtypes")
 	public static String toString(List list) {
 		StringBuffer reStr = new StringBuffer("");
 		for (Object o : list) {
@@ -974,6 +984,7 @@ public class StringUtil {
 	 * @param context
 	 * @version 1.0
 	 */
+	@SuppressWarnings("rawtypes")
 	public static List<Map<String, String>> compareObj(Object obj1, Object obj2)
 			throws Exception {
 		Class c = obj1.getClass();
@@ -1005,6 +1016,7 @@ public class StringUtil {
 	 * @param context
 	 * @version 1.0
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Object invokeMethod(Object owner, String methodName,
 			Object[] args) throws Exception {
 		Class ownerClass = owner.getClass();
@@ -1207,26 +1219,26 @@ public class StringUtil {
 	}
 
 	/**
-	 * 将二百一十八转化成218
-	 * 二千零四万 204
-	 * 三亿零六百零七万零九百零六=306070906
-	 * 三千零五十万四千三百二十六亿零六百零七万一千九百零六
+	 * 将二百一十八转化成218 二千零四万 204 三亿零六百零七万零九百零六=306070906 三千零五十万四千三百二十六亿零六百零七万一千九百零六
+	 * 
 	 * @param str
 	 * @return Long
 	 */
 	public static Long chineseToNum(String str) {
-		Map<String,Long> units = new HashMap<String,Long>();
+		Map<String, Long> units = new HashMap<String, Long>();
 		units.put("亿", 100000000L);
 		units.put("万", 10000L);
 		units.put("千", 1000L);
 		units.put("百", 100L);
 		units.put("十", 10L);
-		
-		Map<String,Integer> nums = new HashMap<String,Integer>();
-		String[] numStrs = new String[]{ "零", "一", "二", "三", "四", "五", "六", "七", "八", "九" };
-		for(int i=0;i<numStrs.length;i++ ){
+
+		Map<String, Integer> nums = new HashMap<String, Integer>();
+		String[] numStrs = new String[] { "零", "一", "二", "三", "四", "五", "六",
+				"七", "八", "九" };
+		for (int i = 0; i < numStrs.length; i++) {
 			nums.put(numStrs[i], i);
 		}
+		nums.put("〇", 0);
 		
 		Long total = 0L;
 		Long num = 0L;
@@ -1234,32 +1246,84 @@ public class StringUtil {
 		Long lastUnit = null;
 		Long maxUnit = 0L;
 		char[] ss = str.toCharArray();
-		for(int i=0;i<ss.length;i++){
+		for (int i = 0; i < ss.length; i++) {
 			Long v = units.get(String.valueOf(ss[i]));
-			if(v == null){	//是数值
+			if (v == null) { // 是数值
 				tmp = nums.get(String.valueOf(ss[i]));
-				if(i == ss.length-1){
-					total += num+tmp;
+				if (i == ss.length - 1) {
+					total += num + tmp;
 				}
-			}else{			//是单位 
-				if(lastUnit!=null && lastUnit < v){	//比前一个单位大，如三百零五万，则乘
-					if(v > maxUnit){
+			} else { // 是单位
+				if (lastUnit != null && lastUnit < v) { // 比前一个单位大，如三百零五万，则乘
+					if (v > maxUnit) {
 						maxUnit = v;
-						total = (total+num+tmp) * v ;
-					}else{
-						total += (num+tmp) * v ;
+						total = (total + num + tmp) * v;
+					} else {
+						total += (num + tmp) * v;
 					}
 					num = 0L;
-				}else{	//比前一个单位小，如一千三百，则乘加
-					num += tmp * v;
+				} else { // 比前一个单位小，如一千三百，则乘加
+					if(v==10 && i == 0){
+						num = v;
+					}else {
+						num += tmp * v;
+					}
 					tmp = 0;
 				}
 				lastUnit = v;
 			}
 		}
+
+		return total==0?num:total;
+	}
+
+	public static String chineseNumFormat(String input) {
+		Map<String, String> nums = new HashMap<String, String>();
+		String[] numStrs = new String[] { "零", "一", "二", "三", "四", "五", "六",
+				"七", "八", "九" };
+		for (int i = 0; i < numStrs.length; i++) {
+			nums.put(numStrs[i], ""+i);
+		}
+		nums.put("〇", "0");
+		nums.put("点", ".");
 		
-		System.out.println(total);
-		return num;
+		String aString = "";
+		char[] ss = input.toCharArray();
+		for (char s : ss) {
+			String tmp = nums.get(String.valueOf(s));
+			if(tmp==null){
+				aString += s;
+			}else{
+				aString += tmp;
+			}
+		}
+		return aString;
+	}
+
+	public static String numChineseFormat(String input) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("0", "零");
+		map.put("1", "一");
+		map.put("2", "二");
+		map.put("3", "三");
+		map.put("4", "四");
+		map.put("5", "五");
+		map.put("6", "六");
+		map.put("7", "七");
+		map.put("8", "八");
+		map.put("9", "九");
+		
+		String aString = "";
+		char[] ss = input.toCharArray();
+		for (char s : ss) {
+			String tmp = map.get(String.valueOf(s));
+			if(tmp==null){
+				aString += s;
+			}else{
+				aString += tmp;
+			}
+		}
+		return aString;
 	}
 
 }

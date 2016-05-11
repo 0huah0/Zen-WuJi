@@ -1,0 +1,7 @@
+[
+	{
+		"_regular": "({\d一-九零〇十百千万亿}+)[+-*/加减乘除%模]{1}({\d一-九零〇十百千万亿}+){等于|=|是多少}",
+		"default_": "?:你是说。",
+		"md_": "me.shizh.ai.zen.descion.md.MdMathSimple"
+	}
+]
