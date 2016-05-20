@@ -13,9 +13,10 @@
 			}
 		},
 		action:{
-			move:"function(direction,speed,distence){}",
-			jump:"function(direction,height|middel|low,distence=50%){}",
-			smile:"function(time=3s,degree=40%){}"
+			move:"function(x=30m,y=0m,speed=0.5){}",	//在以当前位置左右为x轴，前后为y轴的坐标中用额定移速的0.5移动到x=10m,y=-10m的位置(正右后14.1m)
+			move:"function(degree=15,speed=0.5,distence=5m){}",	//往时钟15分方向（正右）用额定移速的0.5移动5m
+			jump:"function(degree=0,height|middel|low,distence=50%){}",//往正前方以额定跳距的0.5跳，跳高为hml之一
+			smile:"function(time=3s,degree=40%){}" //用0.4的程度笑3秒
 		},
 		voice:{
 			sing:"function([song name]){}",

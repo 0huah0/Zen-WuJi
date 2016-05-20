@@ -2,10 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="F:/DevData/workspace/Zen-WuJi/libs/gson-2.2.4.jar"/>
-	<classpathentry kind="lib" path="F:/DevData/workspace/Zen-WuJi/libs/httpclient-4.5.jar"/>
-	<classpathentry kind="lib" path="F:/DevData/workspace/Zen-WuJi/libs/jl1.0.1.jar"/>
-	<classpathentry kind="lib" path="F:/DevData/workspace/Zen-WuJi/features/voice/baidu_tts/com.baidu.tts_2.2.4.20160405_6a7eb4e_release.jar"/>
-	<classpathentry kind="lib" path="F:/DevData/workspace/Zen-WuJi/libs/derby.jar"/>
+	<classpathentry kind="lib" path="libs/com.baidu.tts_2.2.4.20160405_6a7eb4e_release.jar"/>
+	<classpathentry kind="lib" path="libs/derby.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="libs/httpclient-4.5.jar"/>
+	<classpathentry kind="lib" path="libs/jl1.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
