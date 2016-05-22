@@ -17,6 +17,9 @@ public class DateUtil {
 
 	private final static SimpleDateFormat sdfTime = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss");
+	
+	private final static SimpleDateFormat sdfDateTime = new SimpleDateFormat(
+			"yyyyMMddHHmmss");
 
 	/**
 	 * 获取YYYY格式
@@ -53,7 +56,9 @@ public class DateUtil {
 	public static String getTime() {
 		return sdfTime.format(new Date());
 	}
-
+	public static String getDateTime() {
+		return sdfDateTime.format(new Date());
+	}
 	/**
 	 * @Title: compareDate
 	 * @Description: TODO(日期比较，如果s>=e 返回true 否则返回false)

@@ -6,8 +6,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import me.shizh.ai.zen.interaction.Interaction;
 import me.shizh.ai.zen.interaction.InteractionOutput;
+import me.shizh.ai.zen.interaction.InteractionVO;
 import me.shizh.common.util.StringUtil;
 import me.shizh.common.util.UuidUtil;
 
@@ -19,7 +19,7 @@ public class User {
 	private String emotion = "快乐";// 快乐、悲伤、恐惧、愤怒、焦虑、惊讶、尴尬、羞耻、内疚、鄙夷、厌恶、狂喜、绝望、暴怒、憎恶、欲望、悲哀、害羞、骄傲、自信、惊喜、犹豫、忧愁、忧郁、激动
 	private UserType userType;
 	private Map<String, Map<String, String>> ext_attr = new HashMap<>(); // 用户扩展属性
-	private Interaction interaction;
+	private InteractionVO interactionVO = new InteractionVO();
 
 	public String getUid() {
 		return uid;
@@ -84,12 +84,13 @@ public class User {
 		this.ext_attr = ext_attr;
 	}
 
-	public Interaction getInteraction() {
-		return interaction;
+
+	public InteractionVO getInteractionVO() {
+		return interactionVO;
 	}
 
-	public void setInteraction(Interaction interaction) {
-		this.interaction = interaction;
+	public void setInteractionVO(InteractionVO interactionVO) {
+		this.interactionVO = interactionVO;
 	}
 
 	/**

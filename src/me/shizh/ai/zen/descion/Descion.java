@@ -13,7 +13,16 @@ import me.shizh.common.util.StringUtil;
 
 public class Descion {
 
+	/**
+	 * DO DESCION
+	 * @param input
+	 * @return output
+	 */
 	public static String doDescionByStringInput(String input) {
+		List<String[]> ms = ZenWuJi.USER.getInteractionVO().getMemoryStack();
+		if(ms.get(ms.size()-1)[1].contains(input+"|")){
+			//TODO
+		}
 		List<String> outputs = new ArrayList<String>();
 
 		List<String> categories = extractCategories(input);
@@ -25,9 +34,16 @@ public class Descion {
 		if(outputs.size()==0){
 			outputs.addAll(matchDescionInCs(ZenWuJi.CATEGORIES.get("default"), input)); 
 		}
+		
 		return choiceOne(outputs); // choice one
 	}
 
+	
+	/**
+	 * 如果返回结果有多个需要按一定逻辑返回最适合的一个
+	 * @param outputs
+	 * @return
+	 */
 	private static String choiceOne(List<String> outputs) {
 		/*System.out.print("OUTPUT:");
 		for (String output : outputs) {
@@ -38,9 +54,9 @@ public class Descion {
 		return outputs.get(RandomUtil.random(0, outputs.size()));
 	}
 
+	
 	/**
-	 * 在
-	 * 
+	 * 正则表达式匹配
 	 * @param cs
 	 * @param input
 	 * @return
@@ -86,7 +102,7 @@ public class Descion {
 
 
 	/**
-	 * 分类到CATEGORIES的类型中
+	 * 分类到CATEGORIES的类型中，对input做问题分类
 	 * 如果找不到，则返回default
 	 * @param input
 	 * @return

@@ -31,6 +31,7 @@ What is?
 1.通过在配json文件中为category的md设置一个可以访问到的java类，可以完成通过该类是逻辑答复input，要求是该类有个public String doMachineDecision(String input)方法。
 2.category支持正则表达式，并能在output中通过{n}引用正则表达式中mapping到的matcher.group(n);
 3.支持词典
+4.单位换算
 ======up 完成
 3.应该要加入不回应机制，如遇到用户回复"好的"，"嗯"，"呵呵"这种时需要随机的选择不回应，等待对方继续或等待触发主动模式。
 4.用户资料、互动历史需要持久化
@@ -55,6 +56,11 @@ http://www.imagecode.net/service/regex.aspx
 https://www.debuggex.com/
 http://tool.oschina.net/regex/
 
-2.主意解决
+
+2.注意解决
 	聊天机器人伪装成真人的10种伎俩 http://www.guokr.com/article/245733/
 	人脸表情有21种http://news.cnnb.com.cn/system/2014/04/20/008041380.shtml
+
+
+1.文学常识 http://zhidao.baidu.com/link?url=35a23UjoRTw4OgVq2fO1H3lOYAdjVd7gG4TRA6gWOfmr16RoKWYv0cFm0jhTZkhTiGFYyNwHedRPQVkdr0etIa
+
