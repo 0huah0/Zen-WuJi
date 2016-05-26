@@ -22,11 +22,6 @@ import java.util.regex.Pattern;
  */
 public class StringUtil {
 
-	public static String[] units = { "", "十", "百", "千", "万", "十万", "百万", "千万",
-			"亿", "十亿", "百亿", "千亿", "万亿" };
-	public static char[] numArray = { '零', '一', '二', '三', '四', '五', '六', '七',
-			'八', '九' };
-
 	/**
 	 * 将以逗号分隔的字符串转换成字符串数组
 	 * 
@@ -1216,114 +1211,6 @@ public class StringUtil {
 		for (int i = 0; i < t_str_arr2.length; i++) {
 			System.out.println(t_str_arr2[i]);
 		}
-	}
-
-	/**
-	 * 将二百一十八转化成218 二千零四万 204 三亿零六百零七万零九百零六=306070906 三千零五十万四千三百二十六亿零六百零七万一千九百零六
-	 * 
-	 * @param str
-	 * @return Long
-	 */
-	public static Long chineseToNum(String str) {
-		Map<String, Long> units = new HashMap<String, Long>();
-		units.put("亿", 100000000L);
-		units.put("万", 10000L);
-		units.put("千", 1000L);
-		units.put("百", 100L);
-		units.put("十", 10L);
-
-		Map<String, Integer> nums = new HashMap<String, Integer>();
-		String[] numStrs = new String[] { "零", "一", "二", "三", "四", "五", "六",
-				"七", "八", "九" };
-		for (int i = 0; i < numStrs.length; i++) {
-			nums.put(numStrs[i], i);
-		}
-		nums.put("〇", 0);
-		
-		Long total = 0L;
-		Long num = 0L;
-		Integer tmp = 0;
-		Long lastUnit = null;
-		Long maxUnit = 0L;
-		char[] ss = str.toCharArray();
-		for (int i = 0; i < ss.length; i++) {
-			Long v = units.get(String.valueOf(ss[i]));
-			if (v == null) { // 是数值
-				tmp = nums.get(String.valueOf(ss[i]));
-				if (i == ss.length - 1) {
-					total += num + tmp;
-				}
-			} else { // 是单位
-				if (lastUnit != null && lastUnit < v) { // 比前一个单位大，如三百零五万，则乘
-					if (v > maxUnit) {
-						maxUnit = v;
-						total = (total + num + tmp) * v;
-					} else {
-						total += (num + tmp) * v;
-					}
-					num = 0L;
-				} else { // 比前一个单位小，如一千三百，则乘加
-					if(v==10 && i == 0){
-						num = v;
-					}else {
-						num += tmp * v;
-					}
-					tmp = 0;
-				}
-				lastUnit = v;
-			}
-		}
-
-		return total==0?num:total;
-	}
-
-	public static String chineseNumFormat(String input) {
-		Map<String, String> nums = new HashMap<String, String>();
-		String[] numStrs = new String[] { "零", "一", "二", "三", "四", "五", "六",
-				"七", "八", "九" };
-		for (int i = 0; i < numStrs.length; i++) {
-			nums.put(numStrs[i], ""+i);
-		}
-		nums.put("〇", "0");
-		nums.put("点", ".");
-		
-		String aString = "";
-		char[] ss = input.toCharArray();
-		for (char s : ss) {
-			String tmp = nums.get(String.valueOf(s));
-			if(tmp==null){
-				aString += s;
-			}else{
-				aString += tmp;
-			}
-		}
-		return aString;
-	}
-
-	public static String numChineseFormat(String input) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("0", "零");
-		map.put("1", "一");
-		map.put("2", "二");
-		map.put("3", "三");
-		map.put("4", "四");
-		map.put("5", "五");
-		map.put("6", "六");
-		map.put("7", "七");
-		map.put("8", "八");
-		map.put("9", "九");
-		
-		String aString = "";
-		char[] ss = input.toCharArray();
-		for (char s : ss) {
-			String tmp = map.get(String.valueOf(s));
-			if(tmp==null){
-				aString += s;
-			}else{
-				aString += tmp;
-			}
-		}
-		return aString;
 	}
 
 }

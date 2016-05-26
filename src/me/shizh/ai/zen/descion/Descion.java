@@ -82,7 +82,7 @@ public class Descion {
 		            }
 		        	
 		            if (StringUtil.isNotNull(c.getMd_())) { // 使用MD
-		    			output = ClassUtil.md_invoke(c.getMd_(),"doMachineDecision",grps);
+		    			output = ClassUtil.md_invoke(c.getMd_(),input,"doMachineDecision",grps);
 		    		} else {
 		    			if (StringUtil.isNotNull(c.getRandom_())) {// 使用随机
 		    				output = c.getRandom_().get(

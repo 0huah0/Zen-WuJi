@@ -14,7 +14,7 @@ import me.shizh.common.util.StringUtil;
  */
 public class MdDictQuery implements MdBase {
 
-	public String doMachineDecision(List<String> inputs) {
+	public String doMachineDecision(String input,List<String> inputs) {
 		String output = "";
 		if(inputs.size() >= 1){
 			String[] attr = Text.queryWord(inputs.get(0));
@@ -38,7 +38,7 @@ public class MdDictQuery implements MdBase {
 			}
 
 			Class<?> clz = Class.forName("me.shizh.ai.zen.descion.md.MdDictQuery");
-			String output = (String) clz.getMethod("doMachineDecision", List.class).invoke(clz.newInstance(), grps);
+			String output = (String) clz.getMethod("doMachineDecision", List.class).invoke(clz.newInstance(),"", grps);
 			System.out.println(output);
 		} catch (Exception e) {
 			e.printStackTrace();

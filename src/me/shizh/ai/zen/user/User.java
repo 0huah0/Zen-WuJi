@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import me.shizh.ai.zen.interaction.InteractionOutput;
 import me.shizh.ai.zen.interaction.InteractionVO;
+import me.shizh.common.util.MathUtil;
 import me.shizh.common.util.StringUtil;
 import me.shizh.common.util.UuidUtil;
 
@@ -152,7 +153,7 @@ public class User {
 		Matcher matcher = Pattern.compile("([一二三四五六七八九十百]+)").matcher(str); // 匹配“二十”
 		if (matcher.find()) {
 			str = matcher.group(1);
-			age = StringUtil.chineseToNum(str).toString();
+			age = MathUtil.chineseToNum(str).toString();
 		}else{
 			matcher = Pattern.compile("(\\d+)").matcher(str); // 匹配“19”
 			if (matcher.find()) {

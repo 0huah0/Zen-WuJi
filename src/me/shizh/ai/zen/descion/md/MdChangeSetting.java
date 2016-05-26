@@ -16,7 +16,7 @@ import me.shizh.ai.zen.user.User;
  */
 public class MdChangeSetting implements MdBase {
 	
-	public String doMachineDecision(List<String> inputs) {
+	public String doMachineDecision(String input,List<String> inputs) {
 		String output = "已修改。";
 		
 		if(inputs.size() >= 3){
@@ -70,7 +70,7 @@ public class MdChangeSetting implements MdBase {
         		grps.add("IDX_"+i);
             }
 			
-			String output = (String) m.invoke(o,grps );
+			String output = (String) m.invoke(o,"",grps );
 			System.out.println(output);
 		} catch (Exception e) {
 			e.printStackTrace();
